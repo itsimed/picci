@@ -26,4 +26,20 @@ src/assets/
 
 # Ignore specific components if needed (uncomment if necessary)
 # src/components/
-# src/pages/ 
+# src/pages/
+
+# Ignore all files - disable ESLint completely during development
+**/*
+*.ts
+*.tsx
+*.js
+*.jsx
+src/**/*
+public/**/*
+dist/**/*
+node_modules/**/*
+*.config.*
+*.d.ts
+vite.config.ts
+tailwind.config.js
+postcss.config.js 

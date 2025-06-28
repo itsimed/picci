@@ -1,53 +1,113 @@
-# Vite + React + TypeScript + TailwindCSS v3 Template
+# Barbershop Website
 
-This is a ready-to-clone template for starting new projects instantly. It includes:
-- Vite + React + TypeScript
-- TailwindCSS v3 (with config file)
-- Framer Motion
-- React Navigation
-- Pre-configured folder structure for components, layouts, UI, theme, hooks, lib, types, constants, data, styles, and assets
-- `.gitkeep` files in empty folders to ensure they are tracked by git
-- `config` for centralizing colors, assets, themes, and fonts setup
+Un site web moderne et professionnel pour services de coiffure masculine, développé avec React, TypeScript et Tailwind CSS.
 
-## Folder Structure
+## 🚀 Fonctionnalités
 
-- `src/components` – Reusable UI components
-- `src/layout` – Layout components (wrappers, page layouts)
-- `src/ui` – UI primitives or atomic components
-- `src/theme` – Theme-related utilities (can be used for Tailwind or styled-components)
-- `src/hooks` – Custom React hooks
-- `src/lib` – Utility functions and libraries
-- `src/types` – TypeScript type definitions
-- `src/constants` – App-wide constants
-- `src/data` – Static data or mock data
-- `src/styles` – Global or shared styles
-- `src/assets` – Static assets (images, SVGs, etc.)
-- `src/config` – Centralized configuration for colors, fonts, themes, and assets
+- **Design moderne** : Interface élégante avec thème noir et rouge
+- **Animations fluides** : Effets visuels et transitions professionnelles
+- **Multilingue** : Support français/anglais
+- **Responsive** : Adapté à tous les appareils
+- **Services** : Catalogue complet des coupes et services
+- **Produits** : Boutique de produits de soins
+- **Contact** : Formulaire de contact intégré
 
-## Best Practices
+## 🛠️ Technologies
 
-- **Always use config files**: Import colors, fonts, themes, and asset paths from the files in `src/config` instead of hardcoding values. This keeps your design system consistent and easy to update.
-- **Always create components**: Build your UI by creating reusable components in `src/components` or `src/ui`. Avoid writing raw JSX or logic directly in pages or the root `App.tsx`—this makes your codebase scalable and maintainable.
+- **React 18** avec TypeScript
+- **Vite** pour le build rapide
+- **Tailwind CSS** pour le styling
+- **React Router** pour la navigation
+- **Context API** pour la gestion d'état
 
-## Usage
-1. Clone this repo
-2. Run `npm install`
-3. Start building your app!
+## 📁 Structure du projet
 
-## Utilisation pour Barbershop et Lavages
+```
+src/
+├── components/          # Composants réutilisables
+├── pages/              # Pages principales
+├── contexts/           # Contextes React (langues, etc.)
+├── data/               # Données des coupes et produits
+├── config/             # Configuration (assets, thème, etc.)
+└── styles/             # Styles globaux
 
-Ce template est partagé entre **deux sites web** :
+public/
+├── images/
+│   ├── cuts/           # Images des coupes
+│   └── products/       # Images des produits
+└── fonts/              # Polices personnalisées
+```
 
-1. **Barbershop**
-2. **Carwash (Lavage Auto)**
+## 🎨 Thème visuel
 
-Pour garantir une identité visuelle cohérente, les deux projets **doivent absolument conserver le même design** et **la même palette de couleurs : noir et rouge**.
+- **Couleurs principales** : Noir (#000), Rouge (#DC2626)
+- **Effets** : Particules flottantes, dégradés animés
+- **Police** : American Captain (custom) + Inter
+- **Animations** : Transitions fluides, hover effects
 
-### Règles à respecter
+## 📝 Contenu
 
-- **Couleurs primaires** : utilisez uniquement le noir (`#000000`) et le rouge (`#FF0000`) comme couleurs dominantes.
-- **Design unifié** : toute modification d'un composant, de la typographie ou de la mise en page dans l'un des projets doit être reportée à l'identique dans l'autre.
-- **Configuration centralisée** : mettez à jour les valeurs correspondantes dans `src/config/colors.ts` (et tout autre fichier de configuration pertinent) afin que les deux dépôts héritent automatiquement des changements.
-- **Revue de code croisée** : lorsque vous apportez des modifications visuelles à l'un des sites, ouvrez une pull-request dans l'autre projet et faites-la valider par un coéquipier.
+### Services disponibles
+- Coupe Classique (35 CAD $)
+- Coupe Moderne (40 CAD $)
+- Taille de Barbe (25 CAD $)
+- Coupe + Barbe (50 CAD $)
+- Fade Dégradé (38 CAD $)
+- Coupe Enfant (20 CAD $)
 
-En suivant ces règles, nous assurons une expérience utilisateur homogène et une maintenance simplifiée entre les deux sites.
+### Produits
+- Pomade Classique
+- Huile à Barbe Premium
+- Shampoing Homme
+- Cire Coiffante
+- Baume Après-Rasage
+- Gel Coiffant Fort
+
+## 🚀 Installation et développement
+
+```bash
+# Installation des dépendances
+npm install
+
+# Lancement en mode développement
+npm run dev
+
+# Build de production
+npm run build
+
+# Aperçu du build
+npm run preview
+```
+
+## 📸 Images
+
+**Important** : Remplacez les images placeholder dans `/public/images/` par de vraies photos :
+- Format recommandé : JPG/PNG, haute résolution
+- Coupes : ratio 4:3, minimum 600x400px
+- Produits : ratio 1:1, minimum 600x600px
+
+## 🌐 Déploiement
+
+Le projet est prêt pour le déploiement sur :
+- Vercel
+- Netlify  
+- GitHub Pages
+- Tout hébergeur statique
+
+## 📱 Responsive
+
+- **Mobile** : Navigation optimisée, grilles adaptatives
+- **Tablet** : Layouts intermédiaires
+- **Desktop** : Expérience complète avec animations
+
+## 🎯 Prochaines étapes
+
+1. Ajouter de vraies images de coupes et produits
+2. Intégrer un système de réservation
+3. Connecter le formulaire de contact
+4. Ajouter une galerie photo
+5. Implémenter un système de paiement pour les produits
+
+---
+
+Développé avec ❤️ pour offrir une expérience barbershop moderne et professionnelle.

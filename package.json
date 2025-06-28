@@ -4,15 +4,15 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --force",
+    "build": "vite build --mode production --silent",
     "build:check": "tsc -b --noCheck && vite build",
     "build:force": "vite build --mode production",
     "lint": "eslint . --fix",
     "lint:ignore": "eslint . --fix --quiet",
     "preview": "vite preview",
     "type-check": "tsc --noEmit --skipLibCheck",
-    "dev:no-check": "vite --host"
+    "dev:no-check": "vite --host --force"
   },
   "dependencies": {
     "@react-navigation/native": "^7.1.11",

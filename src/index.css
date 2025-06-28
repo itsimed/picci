@@ -3,14 +3,262 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===== FONTS CUSTOM ===== */
+@font-face {
+  font-family: 'GraffitiYouth';
+  src: url('/fonts/GraffitiYouth-Regular.otf') format('opentype'),
+       url('./fonts/GraffitiYouth-Regular.otf') format('opentype'),
+       url('../public/fonts/GraffitiYouth-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Classe pour utiliser la police Graffiti Youth */
+.font-grafity-youth {
+  font-family: 'GraffitiYouth', 'Marker Felt', 'Comic Sans MS', cursive, sans-serif;
+  letter-spacing: 0.02em;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* ===== EFFETS GRAFFITI ===== */
+
+/* Effet graffiti principal avec ombres multiples */
+.graffiti-style {
+  text-shadow: 
+    /* Ombre principale noire profonde */
+    4px 4px 0px #000000,
+    8px 8px 0px #1a1a1a,
+    /* Ombres colorées pour effet spray */
+    12px 12px 15px rgba(0, 0, 0, 0.8),
+    16px 16px 20px rgba(0, 0, 0, 0.6),
+    /* Effet de lueur */
+    0 0 30px rgba(255, 255, 255, 0.1),
+    0 0 60px rgba(255, 255, 255, 0.05);
+  
+  /* Contour typique graffiti */
+  -webkit-text-stroke: 2px #000000;
+  text-stroke: 2px #000000;
+  
+  /* Effet de relief */
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+}
+
+/* Effet graffiti rouge pour signature - NEON PROPRE */
+.graffiti-red {
+  /* Text-shadow rouge doux pour effet néon pur */
+  text-shadow: 
+    /* Lueur néon rouge douce */
+    0 0 10px rgba(220, 38, 38, 0.8),
+    0 0 20px rgba(220, 38, 38, 0.6),
+    0 0 30px rgba(220, 38, 38, 0.4),
+    0 0 40px rgba(220, 38, 38, 0.2);
+  
+  /* Contour rouge léger pour la définition */
+  -webkit-text-stroke: 1px #8b0000;
+  text-stroke: 1px #8b0000;
+  
+  /* Pas de drop-shadow pour éviter l'effet de bloc */
+}
+
+/* Animation de révélation graffiti ultra-fluide */
+@keyframes graffiti-reveal {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) rotate(-3deg) translateY(50px);
+    filter: blur(8px) drop-shadow(0 0 0px rgba(0, 0, 0, 0));
+    text-shadow: none;
+  }
+  15% {
+    opacity: 0.2;
+    transform: scale(0.92) rotate(-2deg) translateY(30px);
+    filter: blur(6px) drop-shadow(0 0 3px rgba(0, 0, 0, 0.2));
+  }
+  35% {
+    opacity: 0.5;
+    transform: scale(0.98) rotate(-1deg) translateY(15px);
+    filter: blur(4px) drop-shadow(0 0 6px rgba(0, 0, 0, 0.4));
+  }
+  55% {
+    opacity: 0.75;
+    transform: scale(1.03) rotate(0.5deg) translateY(5px);
+    filter: blur(2px) drop-shadow(0 0 8px rgba(0, 0, 0, 0.5));
+  }
+  75% {
+    opacity: 0.9;
+    transform: scale(1.01) rotate(-0.2deg) translateY(-2px);
+    filter: blur(1px) drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+  }
+  90% {
+    opacity: 0.98;
+    transform: scale(1.005) rotate(0.1deg) translateY(-1px);
+    filter: blur(0.5px) drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg) translateY(0px);
+    filter: blur(0px) drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+  }
+}
+
+/* Animation de pulsation graffiti ultra-fluide */
+@keyframes graffiti-pulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.5));
+  }
+  25% {
+    transform: scale(1.008) rotate(0.2deg);
+    filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.55));
+  }
+  50% {
+    transform: scale(1.015) rotate(0.4deg);
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.6));
+  }
+  75% {
+    transform: scale(1.008) rotate(-0.2deg);
+    filter: drop-shadow(0 0 12px rgba(0, 0, 0, 0.55));
+  }
+}
+
+/* Animation de pulsation rouge ultra-fluide - NEON PROPRE */
+@keyframes graffiti-pulse-red {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    text-shadow: 
+      0 0 10px rgba(220, 38, 38, 0.8),
+      0 0 20px rgba(220, 38, 38, 0.6),
+      0 0 30px rgba(220, 38, 38, 0.4),
+      0 0 40px rgba(220, 38, 38, 0.2);
+  }
+  25% {
+    transform: scale(1.008) rotate(-0.1deg);
+    text-shadow: 
+      0 0 12px rgba(220, 38, 38, 0.85),
+      0 0 24px rgba(220, 38, 38, 0.65),
+      0 0 36px rgba(220, 38, 38, 0.45),
+      0 0 48px rgba(220, 38, 38, 0.25);
+  }
+  50% {
+    transform: scale(1.015) rotate(-0.3deg);
+    text-shadow: 
+      0 0 15px rgba(220, 38, 38, 0.9),
+      0 0 30px rgba(220, 38, 38, 0.7),
+      0 0 45px rgba(220, 38, 38, 0.5),
+      0 0 60px rgba(220, 38, 38, 0.3);
+  }
+  75% {
+    transform: scale(1.008) rotate(0.1deg);
+    text-shadow: 
+      0 0 12px rgba(220, 38, 38, 0.85),
+      0 0 24px rgba(220, 38, 38, 0.65),
+      0 0 36px rgba(220, 38, 38, 0.45),
+      0 0 48px rgba(220, 38, 38, 0.25);
+  }
+}
+
+/* Classes d'animation ultra-fluides */
+.animate-graffiti-reveal {
+  animation: graffiti-reveal 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.animate-graffiti-pulse {
+  animation: graffiti-pulse 6s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+.animate-graffiti-pulse-red {
+  animation: graffiti-pulse-red 6s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  animation-delay: 0.5s;
+}
+
+/* ===== HERO CONTAINER WEIGHT ===== */
+.hero-container-weight {
+  position: relative;
+  background: 
+    radial-gradient(ellipse 120% 80% at 50% 50%, transparent 0%, rgba(0, 0, 0, 0.1) 50%, transparent 100%),
+    linear-gradient(135deg, rgba(220, 38, 38, 0.01) 0%, transparent 25%, transparent 75%, rgba(220, 38, 38, 0.01) 100%);
+  backdrop-filter: blur(0.5px);
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  border-radius: 2rem;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.03),
+    0 0 60px rgba(0, 0, 0, 0.2),
+    0 0 120px rgba(220, 38, 38, 0.02);
+}
+
+.hero-container-weight::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.01) 25%, 
+    rgba(220, 38, 38, 0.02) 50%, 
+    rgba(255, 255, 255, 0.01) 75%, 
+    transparent 100%);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: subtract;
+  z-index: -1;
+}
+
+/* Effet de spray/texture désactivé pour éviter le bloc rectangulaire */
+.graffiti-spray::before {
+  /* Pseudo-élément désactivé pour un effet néon propre */
+  display: none;
+}
+
+.graffiti-spray:hover::before {
+  /* Hover désactivé pour maintenir la propreté */
+  display: none;
+}
+
+/* Optimisations de performance pour les animations graffiti */
+.graffiti-style,
+.graffiti-red {
+  will-change: transform, filter, text-shadow;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+/* Debug : Force l'affichage si les animations ne marchent pas */
+.graffiti-style.animate-graffiti-reveal,
+.graffiti-red.animate-graffiti-reveal {
+  opacity: 1 !important;
+  transform: scale(1) rotate(0deg) translateY(0px) !important;
+  animation-fill-mode: both;
+}
+
+/* Force la police graffiti si elle ne se charge pas */
+.font-grafity-youth {
+  font-variant: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  body {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
+    color-scheme: dark;
+    background-color: #0a0a0a;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-}
-
-html {
-  overflow-x: hidden;
 }
 
 body {
@@ -60,6 +308,12 @@ a:hover {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+/* ===== LOGO ANIMATIONS ===== */
+@keyframes logoFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-5px) rotate(2deg); }
 }
 
 /* ===== CREATIVE BUTTON SYSTEM ===== */
@@ -645,6 +899,53 @@ button:hover::before {
 
 .animate-fade-in-out {
   animation: fade-in-out 4s ease-in-out infinite;
+}
+
+/* Animation de rotation lente */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* ===== EFFETS TEXTE MODERNES ===== */
+.text-shadow-glow {
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.3),
+    0 0 10px rgba(255, 255, 255, 0.2),
+    0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+/* Améliorations pour les boutons modernes */
+.group:hover .text-shadow-glow {
+  text-shadow: 
+    0 0 5px rgba(255, 255, 255, 0.4),
+    0 0 10px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Support pour les transformations 3D */
+.transform-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+/* Micro-interactions avancées */
+@keyframes button-press {
+  0% { transform: scale(1) translateY(0); }
+  50% { transform: scale(0.98) translateY(1px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.animate-button-press {
+  animation: button-press 0.1s ease-out;
 }
 
 

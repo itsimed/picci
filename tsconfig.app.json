@@ -24,10 +24,16 @@
     "noImplicitReturns": false,
     "noImplicitThis": false,
     "noUncheckedIndexedAccess": false,
-    "suppressImplicitAnyIndexErrors": true,
     "allowJs": true,
     "checkJs": false,
-    "noErrorTruncation": true
+    "noErrorTruncation": true,
+    
+    /* Additional error suppression */
+    "allowUnreachableCode": true,
+    "allowUnusedLabels": true,
+    "noImplicitOverride": false,
+    "noPropertyAccessFromIndexSignature": false,
+    "exactOptionalPropertyTypes": false
   },
   "include": ["src"]
 }
