@@ -302,7 +302,7 @@ body {
   line-height: 1.5;
   font-weight: 400;
 
-  color-scheme: light dark;
+  color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
 
@@ -349,15 +349,15 @@ button {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  color: #ffffff;
 }
 
 button:hover {
-  border-color: #ff4444;
   background-color: #2a2a2a;
-  transform: translateY(-2px);
+  border-color: #ff4444;
   box-shadow: 
-    0 8px 25px rgba(255, 68, 68, 0.3),
-    0 4px 12px rgba(0, 0, 0, 0.4);
+    0 4px 12px rgba(255, 68, 68, 0.15),
+    0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 button:focus,
@@ -581,26 +581,7 @@ button:hover::before {
   transform: translateY(-2px);
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #cc0000;
-  }
-  button {
-    background-color: #f9f9f9;
-    border-color: #ddd;
-  }
-  button:hover {
-    background-color: #ffffff;
-    border-color: #ff4444;
-    box-shadow: 
-      0 4px 12px rgba(255, 68, 68, 0.15),
-      0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-}
+
 
 .brick-pattern {
   background-color: #1a1a1a;
