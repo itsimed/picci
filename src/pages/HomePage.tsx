@@ -256,7 +256,7 @@ const HomePage: React.FC = () => {
                 >
                   {/* Category Title */}
                   <h3 className="text-2xl sm:text-3xl font-bold tracking-widest uppercase text-center border-b-2 border-yellow-400 pb-4">
-                    {category.title}
+                    {t(category.titleKey)}
                   </h3>
 
                   {/* Services List */}
@@ -268,7 +268,7 @@ const HomePage: React.FC = () => {
                           {/* Service Name and Price */}
                           <div className="flex justify-between items-start">
                             <h4 className="text-lg sm:text-xl font-semibold text-white tracking-wide flex-1 pr-4">
-                              {service.name}
+                              {t(service.nameKey)}
                             </h4>
                             <span className="text-lg sm:text-xl font-bold text-yellow-400 tracking-wider">
                               {service.price}
@@ -277,7 +277,7 @@ const HomePage: React.FC = () => {
                           
                           {/* Service Description */}
                           <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
-                            {service.description}
+                            {t(service.descriptionKey)}
                           </p>
                         </div>
 

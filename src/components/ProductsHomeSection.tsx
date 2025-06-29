@@ -13,19 +13,19 @@ const ProductsHomeSection: React.FC<ProductsHomeSectionProps> = ({ isLoaded }) =
     {
       id: 'featured-coiffage',
       name: 'Layrite Original Pomade',
-      description: 'Pomade classique à brillance modérée et tenue moyenne. S\'élimine à l\'eau, parfaite pour les styles rétro.',
+      descriptionKey: 'products.descriptions.layriteOriginalPomade',
       imageSrc: '/images/products/cire-cheveux-original.jpg',
     },
     {
       id: 'featured-soins',
       name: 'Level 3 Hair Conditioner',
-      description: 'Après-shampoing nourrissant pour tous types de cheveux. Il revitalise, hydrate et adoucit la fibre capillaire.',
+      descriptionKey: 'products.descriptions.level3HairConditioner',
       imageSrc: '/images/products/hair-conditionner-apres-shampoing-cheveux.jpg',
     },
     {
       id: 'featured-nettoyage',
       name: 'Bullfrog Secret Potion N°1',
-      description: 'Gel douche multi-usage cheveux, barbe et corps. Nettoyage doux et parfum signature Bullfrog.',
+      descriptionKey: 'products.descriptions.bullfrogSecretPotion',
       imageSrc: '/images/products/gel-douche-multi-usages-secret-potion-n1.jpg',
     }
   ];
@@ -87,7 +87,7 @@ const ProductsHomeSection: React.FC<ProductsHomeSectionProps> = ({ isLoaded }) =
                   
                   {/* Product Description */}
                   <p className="text-base sm:text-lg md:text-xl text-gray-300 leading-relaxed max-w-sm mx-auto">
-                    {product.description}
+                    {t(product.descriptionKey)}
                   </p>
                 </div>
               </div>

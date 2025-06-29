@@ -168,6 +168,58 @@ const translations: Translations = {
   'footer.contact': { fr: 'Contact', en: 'Contact' },
   'footer.followUs': { fr: 'Suivez-nous', en: 'Follow Us' },
   'footer.rights': { fr: 'Tous droits réservés.', en: 'All rights reserved.' },
+
+  // Service Categories
+  'services.category.cutting': { fr: 'COUPE', en: 'CUTTING' },
+  'services.category.beard': { fr: 'BARBE', en: 'BEARD' },
+  'services.category.others': { fr: 'AUTRES', en: 'OTHERS' },
+
+  // Services - CUTTING
+  'services.cut.name': { fr: 'Coupe', en: 'Cut' },
+  'services.cut.description': { fr: 'Coupe incluant l\'entretien des poils d\'oreilles et sourcils', en: 'Cutting including ear hair/eyebrow touching up' },
+  'services.cutBeard.name': { fr: 'Coupe + Barbe', en: 'Cut + Beard' },
+  'services.cutBeard.description': { fr: 'Coupe et barbe incluant poils d\'oreilles/sourcils', en: 'Cutting and beard including ear hair/eyebrows' },
+  'services.cutChild.name': { fr: 'Coupe jusqu\'à 13 ans', en: 'Cutting up to 13 years' },
+  'services.cutChild.description': { fr: 'Coupe pour enfants jusqu\'à 13 ans', en: 'Cutting for children up to 13 years old' },
+  'services.cut60.name': { fr: 'Coupe 60+', en: 'Cut 60+' },
+  'services.cut60.description': { fr: 'Coupe pour personnes de 60 ans ou plus', en: 'Cutting for people 60 years or older' },
+  'services.clipper.name': { fr: 'Tondeuse 1 longueur', en: 'Hair clipper 1 length' },
+  'services.clipper.description': { fr: 'Un réglage de tondeuse sur toute la tête', en: 'One clipper setting full head' },
+
+  // Services - BEARD
+  'services.beard.name': { fr: 'Barbe', en: 'Beard' },
+  'services.beard.description': { fr: 'Façonnage et rasage de la barbe', en: 'Shaping and shaving the beard' },
+  'services.classicShaving.name': { fr: 'Rasage Classique', en: 'Classic Shaving' },
+  'services.classicShaving.description': { fr: 'Un rasage traditionnel', en: 'A classic shave' },
+  'services.beardTrim.name': { fr: 'Taille Barbe + Styling', en: 'Beard Trim + Styling' },
+  'services.beardTrim.description': { fr: 'Taille professionnelle et styling de barbe', en: 'Professional beard trimming and styling' },
+  'services.mustache.name': { fr: 'Taille Moustache', en: 'Mustache Trim' },
+  'services.mustache.description': { fr: 'Taille et façonnage précis de moustache', en: 'Precision mustache trimming and shaping' },
+
+  // Services - OTHERS
+  'services.vip.name': { fr: 'Traitement VIP', en: 'VIP Treatment' },
+  'services.vip.description': { fr: 'Lavage, coupe, barbe, épilation oreilles et nez, choix de cire', en: 'Wash, cut, beard, wax ears and nose, choice of wax' },
+  'services.hairWash.name': { fr: 'Lavage Cheveux + Styling', en: 'Hair Wash + Styling' },
+  'services.hairWash.description': { fr: 'Service professionnel de lavage et styling', en: 'Professional hair wash and styling service' },
+  'services.eyebrow.name': { fr: 'Épilation Sourcils', en: 'Eyebrow Trimming' },
+  'services.eyebrow.description': { fr: 'Façonnage et épilation précise des sourcils', en: 'Precise eyebrow shaping and trimming' },
+      'services.hotTowel.name': { fr: 'Traitement Serviette Chaude', en: 'Hot Towel Treatment' },
+    'services.hotTowel.description': { fr: 'Traitement facial relaxant à la serviette chaude', en: 'Relaxing hot towel facial treatment' },
+
+    // Product descriptions
+    'products.descriptions.level3HairConditioner': { fr: 'Après-shampoing nourrissant pour tous types de cheveux. Il revitalise, hydrate et adoucit la fibre capillaire.', en: 'Nourishing conditioner for all hair types. It revitalizes, hydrates and softens the hair fiber.' },
+    'products.descriptions.bullfrogBotanicalButter': { fr: 'Beurre nourrissant pour barbe et cheveux, enrichi en extraits botaniques. Apporte douceur, éclat et protection.', en: 'Nourishing butter for beard and hair, enriched with botanical extracts. Provides softness, shine and protection.' },
+    'products.descriptions.daimonBarberTextureClay': { fr: 'Argile coiffante à tenue forte et fini mat. Idéal pour les coiffures structurées avec effet naturel.', en: 'Styling clay with strong hold and matte finish. Ideal for structured hairstyles with natural effect.' },
+    'products.descriptions.layriteNaturalMatteCream': { fr: 'Crème coiffante à finition mate, tenue moyenne. Look naturel, souple et propre.', en: 'Styling cream with matte finish, medium hold. Natural, flexible and clean look.' },
+    'products.descriptions.layriteOriginalPomade': { fr: 'Pomade classique à brillance modérée et tenue moyenne. S\'élimine à l\'eau, parfaite pour les styles rétro.', en: 'Classic pomade with moderate shine and medium hold. Water-soluble, perfect for retro styles.' },
+    'products.descriptions.layriteSuperholdPomade': { fr: 'Tenue extrême pour cheveux épais ou difficiles à coiffer. Brillance moyenne, fixation longue durée.', en: 'Extreme hold for thick or difficult-to-style hair. Medium shine, long-lasting fixation.' },
+    'products.descriptions.layriteSupershineCream': { fr: 'Crème coiffante haute brillance, tenue souple. Pour des styles lissés et élégants.', en: 'High-shine styling cream, flexible hold. For sleek and elegant styles.' },
+    'products.descriptions.bullfrogSecretPotion': { fr: 'Gel douche multi-usage cheveux, barbe et corps. Nettoyage doux et parfum signature Bullfrog.', en: 'Multi-use hair, beard and body wash gel. Gentle cleansing and signature Bullfrog fragrance.' },
+    'products.descriptions.captainFawcettSeaSaltSpray': { fr: 'Spray texturisant aux minéraux marins. Apporte volume et mouvement naturel sans alourdir.', en: 'Texturizing spray with marine minerals. Provides volume and natural movement without weighing down.' },
+    'products.descriptions.dapperDanHairBodyShampoo': { fr: 'Shampoing 2-en-1 pour cheveux et corps. Mousse riche, nettoyage efficace et parfum vintage.', en: '2-in-1 shampoo for hair and body. Rich lather, effective cleansing and vintage fragrance.' },
+    'products.descriptions.uppercutDeluxeClearScalp': { fr: 'Shampoing purifiant. Nettoie le cuir chevelu en profondeur tout en éliminant les résidus de coiffage.', en: 'Purifying shampoo. Deep cleanses the scalp while removing styling residue.' },
+    'products.descriptions.reuzelSurfTonic': { fr: 'Tonique texturisant effet plage. Volume naturel, finition mate, parfaite base avant coiffage.', en: 'Beach-effect texturizing tonic. Natural volume, matte finish, perfect base before styling.' },
+    'products.descriptions.oilCanGroomingStylingPowder': { fr: 'Poudre coiffante pour donner du volume, de la texture et une finition mate. Tenue légère et modulable.', en: 'Styling powder to add volume, texture and matte finish. Light and buildable hold.' },
 };
 
 interface LanguageContextType {

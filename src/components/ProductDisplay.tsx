@@ -88,7 +88,7 @@ const ProductDisplay: React.FC = () => {
                         {product.name}
                       </h3>
                       <p className="text-sm text-gray-400 leading-relaxed line-clamp-3">
-                        {product.description}
+                        {t(product.descriptionKey)}
                       </p>
                     </div>
                   </div>

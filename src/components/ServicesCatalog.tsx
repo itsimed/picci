@@ -1,7 +1,10 @@
 import React from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 import { servicesData } from '../data/servicesData';
 
 const ServicesCatalog: React.FC = () => {
+  const { t } = useLanguage();
+  
   const handleAppointment = () => {
     // TODO: Implémenter la navigation vers la réservation
     console.log('Make an appointment clicked');
@@ -13,10 +16,10 @@ const ServicesCatalog: React.FC = () => {
         {/* Header Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-widest uppercase mb-6">
-            SERVICES
+            {t('catalog.title')}
           </h1>
           <p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto">
-            Découvrez notre gamme de services professionnels
+            {t('catalog.subtitle')}
           </p>
         </div>
 
@@ -26,7 +29,7 @@ const ServicesCatalog: React.FC = () => {
             <div key={category.title} className="space-y-8">
               {/* Category Title */}
               <h2 className="text-2xl sm:text-3xl font-bold tracking-widest uppercase text-center border-b-2 border-yellow-400 pb-4">
-                {category.title}
+                {t(category.titleKey)}
               </h2>
 
               {/* Services List */}
@@ -38,7 +41,7 @@ const ServicesCatalog: React.FC = () => {
                       {/* Service Name and Price */}
                       <div className="flex justify-between items-start">
                         <h3 className="text-lg sm:text-xl font-semibold text-white tracking-wide flex-1 pr-4">
-                          {service.name}
+                          {t(service.nameKey)}
                         </h3>
                         <span className="text-lg sm:text-xl font-bold text-yellow-400 tracking-wider">
                           {service.price}
@@ -47,7 +50,7 @@ const ServicesCatalog: React.FC = () => {
                       
                       {/* Service Description */}
                       <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
-                        {service.description}
+                        {t(service.descriptionKey)}
                       </p>
                     </div>
 
@@ -68,7 +71,7 @@ const ServicesCatalog: React.FC = () => {
             onClick={handleAppointment}
             className="bg-yellow-400 text-black font-bold tracking-widest uppercase px-8 py-4 text-lg sm:text-xl hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/25"
           >
-            MAKE AN APPOINTMENT
+            {t('contact.form.submit')}
           </button>
         </div>
       </div>
