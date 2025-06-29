@@ -49,51 +49,51 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Company Info */}
           <div className="lg:col-span-2">
-            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-red-400">
-              Barbershop
+            <h3 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-cyan-400">
+              {t('footer.brandName')}
             </h3>
             <p className="text-gray-300 text-sm sm:text-base mb-4 sm:mb-6 leading-relaxed">
-              {t('footer.description')}
+              {t('footer.slogan')}
             </p>
             <div className="space-y-2">
               <p className="text-gray-300 text-sm sm:text-base">
-                📍 123 Rue Principale, Montréal, QC H2X 1Y4
+                📍 {t('contact.info.address.line1')}, {t('contact.info.address.line2')}
               </p>
               <p className="text-gray-300 text-sm sm:text-base">
-                📞 +1 (514) 123-4567
+                📞 {t('contact.info.phone.number')}
               </p>
-              <p className="text-gray-300 text-sm sm:text-base">contact@barbershop.com</p>
+              <p className="text-gray-300 text-sm sm:text-base">{t('footer.email')}</p>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 className="text-base sm:text-lg font-semibold mb-3 sm:mb-4 text-white">
-              {t('footer.quickLinks')}
+              {t('footer.quickLinks', 'Liens Rapides')}
             </h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base">
-                  Accueil
+                <Link to="/" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm sm:text-base">
+                  {t('nav.home')}
                 </Link>
               </li>
               <li>
-                <Link to="/catalog" className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base">
+                <Link to="/catalog" className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm sm:text-base">
                   {t('footer.services')}
                 </Link>
               </li>
               <li>
                 <button 
                   onClick={() => scrollToSection('about')} 
-                  className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base bg-transparent border-none p-0 cursor-pointer"
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm sm:text-base bg-transparent border-none p-0 cursor-pointer"
                 >
-                  À Propos
+                  {t('nav.about')}
                 </button>
               </li>
               <li>
                 <button 
                   onClick={() => scrollToSection('contact')} 
-                  className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base bg-transparent border-none p-0 cursor-pointer"
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 text-sm sm:text-base bg-transparent border-none p-0 cursor-pointer"
                 >
                   {t('footer.contact')}
                 </button>
@@ -111,8 +111,8 @@ const Footer: React.FC = () => {
                 <a
                   key={social.name}
                   href={social.href}
-                  className="text-gray-300 hover:text-red-400 transition-colors duration-300 transform hover:scale-110"
-                  aria-label={`Suivre sur ${social.name}`}
+                  className="text-gray-300 hover:text-cyan-400 transition-colors duration-300 transform hover:scale-110"
+                  aria-label={t('social.follow', { platform: social.name })}
                 >
                   {social.icon}
                 </a>
@@ -124,7 +124,7 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-6 sm:pt-8 border-t border-gray-800 text-center">
           <p className="text-gray-400 text-xs sm:text-sm">
-            © {new Date().getFullYear()} Barbershop. {t('footer.rights')}
+            © {new Date().getFullYear()} {t('footer.brandName')}. {t('footer.rights')}
           </p>
         </div>
       </div>

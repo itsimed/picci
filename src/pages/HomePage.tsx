@@ -51,10 +51,10 @@ const HomePage: React.FC = () => {
     catalogSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleCutSelect = (cutId: string) => {
-    console.log('Cut selected:', cutId);
-    // Navigation vers la page catalogue avec l'ID de la coupe
-    navigate(`/catalog?cut=${cutId}`);
+  const handleServiceSelect = (serviceId: string) => {
+    console.log('Service selected:', serviceId);
+    // Navigation vers la page catalogue avec l'ID du service
+    navigate(`/catalog?service=${serviceId}`);
   };
 
   return (
@@ -65,7 +65,7 @@ const HomePage: React.FC = () => {
         {[...Array(15)].map((_, i) => (
           <div
             key={i}
-            className="absolute w-0.5 h-0.5 bg-red-500/20 rounded-full animate-float"
+            className="absolute w-0.5 h-0.5 bg-blue-500/20 rounded-full animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -79,7 +79,7 @@ const HomePage: React.FC = () => {
         {[...Array(8)].map((_, i) => (
           <div
             key={`mid-${i}`}
-            className="absolute w-1 h-1 bg-orange-500/15 rounded-full animate-float"
+            className="absolute w-1 h-1 bg-cyan-500/15 rounded-full animate-float"
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
@@ -90,9 +90,9 @@ const HomePage: React.FC = () => {
         ))}
         
         {/* Orbes de gradient harmonisés */}
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-red-500/3 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-orange-500/2 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '8s' }}></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-yellow-500/1 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '12s' }}></div>
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-500/3 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-cyan-500/2 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '8s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-sky-500/1 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '12s' }}></div>
       </div>
 
       <div className="relative z-10">
@@ -100,149 +100,75 @@ const HomePage: React.FC = () => {
 
         {/* 1. HERO SECTION - animations harmonisées */}
         <section className="h-screen xl:h-[110vh] flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
-          {/* Background image */}
-          <div className="absolute inset-0">
+          {/* Background image principale */}
+          <div className="absolute inset-0 z-0">
             <img 
               src={assets.back} 
-              alt="Barbershop interior" 
+              alt="Car wash interior" 
               className="w-full h-full object-cover opacity-30"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80"></div>
+            {/* Image Picci_8 en superposition */}
+            <img
+              src="/Picci_8.jpg"
+              alt="Lave-auto Ricci Carwash"
+              className="w-full h-full object-cover absolute inset-0 opacity-80 mix-blend-overlay blur-[1px] pointer-events-none"
+              style={{ zIndex: 1 }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-10"></div>
           </div>
 
           {/* Hero content - CONTENEUR RENFORCÉ */}
           <div className="relative z-10 text-center px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 max-w-7xl xl:max-w-8xl mx-auto py-16 sm:py-20 md:py-24 lg:py-28 hero-container-weight">
-            <div className="relative overflow-hidden mb-4 sm:mb-6 pb-2 sm:pb-4 pt-2 sm:pt-3">
-              <h1 className={`relative font-grafity-youth text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold text-white leading-tight graffiti-style graffiti-spray animate-graffiti-pulse ${
-                isLoaded ? 'animate-graffiti-reveal' : 'opacity-0'
-              }`}>
-                {t('home.hero.title1')}
-              </h1>
-              
-              {/* Particules de spray fluides autour de "Un style." */}
-              <div className="absolute inset-0 pointer-events-none">
-                {[...Array(10)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-1 h-1 bg-white/40 rounded-full animate-float"
-                    style={{
-                      left: `${20 + (i * 6) + Math.random() * 15}%`,
-                      top: `${15 + Math.random() * 70}%`,
-                      animationDelay: `${i * 0.3 + Math.random() * 2}s`,
-                      animationDuration: `${5 + Math.random() * 2}s`,
-                      transform: `scale(${0.7 + Math.random() * 0.8})`,
-                      filter: 'blur(0.3px)'
-                    }}
-                  />
-                ))}
-                {/* Grosses gouttes harmonisées */}
-                {[...Array(4)].map((_, i) => (
-                  <div
-                    key={`big-${i}`}
-                    className="absolute w-1.5 h-1.5 bg-white/25 rounded-full animate-pulse"
-                    style={{
-                      left: `${25 + (i * 15) + Math.random() * 20}%`,
-                      top: `${20 + Math.random() * 60}%`,
-                      animationDelay: `${i * 0.8 + Math.random() * 2}s`,
-                      animationDuration: `${6 + Math.random() * 2}s`,
-                      filter: 'blur(0.5px)'
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-            
-            <div className="relative overflow-hidden mb-6 sm:mb-8 pb-2 sm:pb-4 pt-2 sm:pt-3 max-w-none w-full">
-              <h2 className={`relative font-grafity-youth text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[10rem] font-bold text-red-500 leading-tight graffiti-red graffiti-spray animate-graffiti-pulse-red w-full ${
-                isLoaded ? 'animate-graffiti-reveal' : 'opacity-0'
-              }`} style={{ animationDelay: '0.6s', letterSpacing: '-0.02em', transform: 'scaleX(1.1)' }}>
-                {t('home.hero.title2')}
-              </h2>
-              
-              {/* Particules de spray rouges fluides autour de "Une signature." */}
-              <div className="absolute inset-0 pointer-events-none">
-                {[...Array(10)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="absolute w-1 h-1 bg-red-500/50 rounded-full animate-float"
-                    style={{
-                      left: `${20 + (i * 6) + Math.random() * 15}%`,
-                      top: `${15 + Math.random() * 70}%`,
-                      animationDelay: `${1 + i * 0.3 + Math.random() * 2}s`,
-                      animationDuration: `${5 + Math.random() * 2}s`,
-                      transform: `scale(${0.7 + Math.random() * 0.8})`,
-                      filter: 'blur(0.3px)'
-                    }}
-                  />
-                ))}
-                {/* Grosses gouttes rouges harmonisées */}
-                {[...Array(4)].map((_, i) => (
-                  <div
-                    key={`red-big-${i}`}
-                    className="absolute w-1.5 h-1.5 bg-red-500/35 rounded-full animate-pulse"
-                    style={{
-                      left: `${25 + (i * 15) + Math.random() * 20}%`,
-                      top: `${20 + Math.random() * 60}%`,
-                      animationDelay: `${1.5 + i * 0.8 + Math.random() * 2}s`,
-                      animationDuration: `${6 + Math.random() * 2}s`,
-                      filter: 'blur(0.5px)'
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
-            <div className="overflow-hidden mb-8 sm:mb-10 mt-4 sm:mt-6">
-              <p className={`text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto transform transition-all duration-800 delay-400 px-6 sm:px-8 leading-relaxed ${
-                isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
-              }`}>
-                {t('home.hero.description')}
-              </p>
-            </div>
-            <div className={`transform transition-all duration-800 delay-600 ${
-              isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-            }`}>
-              <button 
-                onClick={scrollToCatalog}
-                className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-lg overflow-hidden transition-all duration-500 ease-out text-base sm:text-lg
-                  hover:from-red-700 hover:to-red-800 hover:shadow-[0_20px_40px_-12px_rgba(220,38,38,0.4)] 
-                  transform hover:scale-[1.02] hover:-translate-y-1 hover:rotate-[0.5deg] 
-                  active:scale-[0.98] active:translate-y-0
-                  before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-700 before:ease-out hover:before:translate-x-[100%]
-                  after:absolute after:inset-0 after:bg-gradient-to-br after:from-red-400/20 after:via-transparent after:to-red-900/20 after:opacity-0 after:transition-opacity after:duration-500 hover:after:opacity-100"
-              >
-                <span className="relative z-10 transition-all duration-300 group-hover:text-shadow-glow">
-                  {t('home.hero.cta')}
+            <h1 className="font-ballsye text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold text-white leading-tight mb-4 relative">
+              Clean. 
+              <span className="relative text-blue-400 inline-block overflow-visible">
+                <span className="relative z-10">Shine.</span>
+                {/* Reflet glossy fluide */}
+                <span className="absolute left-0 top-0 w-full h-full pointer-events-none z-20">
+                  <span className="block absolute left-[-60%] top-1/4 w-1/3 h-1/2 bg-gradient-to-r from-white/80 via-white/0 to-white/0 blur-[2px] opacity-70 animate-shine-glossy" style={{animationDelay:'0.7s'}}></span>
                 </span>
-                
-                {/* Micro particles effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                  <div className="absolute top-1/2 left-1/4 w-1 h-1 bg-white/60 rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></div>
-                  <div className="absolute top-1/3 right-1/3 w-0.5 h-0.5 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: '200ms' }}></div>
-                  <div className="absolute bottom-1/3 left-1/2 w-0.5 h-0.5 bg-white/50 rounded-full animate-pulse" style={{ animationDelay: '400ms' }}></div>
-                </div>
-              </button>
+              </span>
+              <span className="text-red-500 animate-glow-red drop-shadow-[0_0_16px_rgba(239,68,68,0.7)]">Drive.</span>
+            </h1>
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mt-8 mb-10">
+              {t('hero.subtitle')}
+            </p>
+            {/* Bouton scroll vers services */}
+            <button 
+              onClick={scrollToCatalog}
+              className="mt-6 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-full text-lg shadow-lg hover:scale-105 hover:from-blue-700 hover:to-cyan-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+            >
+              {t('hero.cta')}
+            </button>
+            {/* Animation scroll/flèche */}
+            <div className="flex flex-col items-center mt-8 animate-bounce-slow">
+              <span className="block w-8 h-8 border-b-4 border-r-4 border-blue-400 rounded-br-lg transform rotate-45 mb-1"></span>
+              <span className="block w-6 h-6 border-b-2 border-r-2 border-cyan-400 rounded-br-lg transform rotate-45"></span>
             </div>
           </div>
 
-          {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-            <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
-            </div>
+          {/* Dégradé premium et flou en bas du Hero */}
+          <div className="absolute bottom-0 left-0 w-full h-40 pointer-events-none z-20">
+            {/* Dégradé fondu premium */}
+            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
+            {/* Flou progressif en bas */}
+            <div className="absolute bottom-0 left-0 w-full h-20 bg-black/0 backdrop-blur-md" style={{maskImage: 'linear-gradient(to top, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to top, black 60%, transparent 100%)'}}></div>
           </div>
         </section>
 
-        {/* 2. SECTION CATALOGUE DE SERVICES - style minimaliste noir/jaune */}
+        {/* 2. SECTION CATALOGUE DE SERVICES */}
         <section id="catalog" className="py-16 sm:py-20 md:py-24 bg-black relative overflow-hidden">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
             {/* Section Header */}
             <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-10">
-              {t('home.catalog.title')}
+              {t('home.catalog.title', 'Nos Services de Lavage')}
             </h2>
 
             {/* Mini Services Grid - animations harmonisées */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 mb-12">
-              {getMiniServices().map((category, categoryIndex) => (
+              {getMiniServices().map((category, categoryIndex) => {
+                const isPremium = category.title.toUpperCase().includes('PREMIUM');
+                return (
                 <div 
                   key={category.title} 
                   className={`space-y-8 transform transition-all duration-600 ${
@@ -250,215 +176,133 @@ const HomePage: React.FC = () => {
                       ? 'translate-y-0 opacity-100' 
                       : 'translate-y-8 opacity-0'
                   }`}
-                  style={{ 
-                    transitionDelay: `${800 + categoryIndex * 150}ms` 
-                  }}
-                >
-                  {/* Category Title */}
-                  <h3 className="text-2xl sm:text-3xl font-bold tracking-widest uppercase text-center border-b-2 border-yellow-400 pb-4">
-                    {t(category.titleKey)}
-                  </h3>
-
-                  {/* Services List */}
+                    style={{ transitionDelay: `${categoryIndex * 200}ms` }}
+                  >
+                    <div className="text-center">
+                      <h3 className="text-2xl font-bold text-white mb-2">{category.title}</h3>
+                      <div className={`w-12 h-1 mx-auto rounded-full ${isPremium ? 'bg-red-500' : 'bg-blue-500'}`}></div>
+                    </div>
                   <div className="space-y-6">
                     {category.services.map((service, serviceIndex) => (
-                      <div key={`${categoryIndex}-${serviceIndex}`}>
-                        {/* Service Item */}
-                        <div className="space-y-2">
-                          {/* Service Name and Price */}
-                          <div className="flex justify-between items-start">
-                            <h4 className="text-lg sm:text-xl font-semibold text-white tracking-wide flex-1 pr-4">
-                              {t(service.nameKey)}
-                            </h4>
-                            <span className="text-lg sm:text-xl font-bold text-yellow-400 tracking-wider">
-                              {service.price}
-                            </span>
+                        <div 
+                          key={service.name}
+                          className={`bg-gray-900 rounded-lg p-6 transform transition-all duration-300 hover:scale-105 cursor-pointer ${isPremium ? 'hover:shadow-red-500/10' : 'hover:shadow-blue-500/10'} hover:shadow-xl`}
+                          onClick={() => handleServiceSelect(service.name)}
+                        >
+                          <h4 className="text-xl font-semibold text-white mb-2">{t(service.nameKey)}</h4>
+                          <p className="text-gray-400 text-sm mb-4">{t(service.descriptionKey)}</p>
+                          <div className="flex justify-between items-center">
+                            <span className={`font-bold ${isPremium ? 'text-red-500' : 'text-blue-500'}`}>{service.price}</span>
+                            <button className={`text-sm text-white transition-colors duration-300 ${isPremium ? 'hover:text-red-500' : 'hover:text-blue-500'}`}>{t('common.learnMore')}</button>
                           </div>
-                          
-                          {/* Service Description */}
-                          <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
-                            {t(service.descriptionKey)}
-                          </p>
-                        </div>
-
-                        {/* Separator - except for last item */}
-                        {serviceIndex < category.services.length - 1 && (
-                          <div className="mt-6 border-b border-dashed border-gray-600"></div>
-                        )}
                       </div>
                     ))}
                   </div>
                 </div>
-              ))}
+                );
+              })}
             </div>
 
-            {/* Call to Action */}
-            <div className="text-center">
-              <Link 
+            {/* Bouton Voir tous nos services */}
+            <div className="text-center mt-12">
+              <Link
                 to="/catalog"
-                className="group relative inline-block px-6 py-3 bg-yellow-400 text-black font-semibold tracking-wide uppercase rounded-lg overflow-hidden transition-all duration-500 ease-out
-                  hover:bg-yellow-300 hover:shadow-[0_15px_35px_-8px_rgba(250,204,21,0.4)]
-                  transform hover:scale-[1.02] hover:-translate-y-0.5 hover:rotate-[-0.3deg]
-                  active:scale-[0.98] active:translate-y-0
-                  before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/30 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-600 before:ease-out hover:before:translate-x-[100%]
-                  after:absolute after:inset-0 after:bg-gradient-to-br after:from-yellow-200/30 after:via-transparent after:to-yellow-600/20 after:opacity-0 after:transition-opacity after:duration-400 hover:after:opacity-100"
+                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-full text-lg shadow-lg hover:scale-105 hover:from-blue-700 hover:to-cyan-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
               >
-                <span className="relative z-10 transition-all duration-300 group-hover:drop-shadow-sm">
-                  {t('home.catalog.cta')}
-                </span>
-                
-                {/* Golden sparkle effect */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-400">
-                  <div className="absolute top-1/4 left-1/5 w-1 h-1 bg-yellow-600/70 rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></div>
-                  <div className="absolute top-2/3 right-1/4 w-0.5 h-0.5 bg-yellow-700/60 rounded-full animate-pulse" style={{ animationDelay: '150ms' }}></div>
-                  <div className="absolute bottom-1/4 left-1/2 w-0.5 h-0.5 bg-yellow-800/50 rounded-full animate-pulse" style={{ animationDelay: '300ms' }}></div>
-                </div>
+                {t('common.viewAll')}
               </Link>
             </div>
           </div>
         </section>
 
-        {/* 3. SECTION PRODUITS HOME */}
-        <ProductsHomeSection isLoaded={isLoaded} />
-
-        {/* 4. SECTION À PROPOS - spacing harmonisé */}
+        {/* 4. SECTION À PROPOS - Ricci Carwash */}
         <section id="about" className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
-          {/* Background animations */}
-          <div className="absolute inset-0 pointer-events-none">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-red-500/2 rounded-full blur-3xl animate-pulse-slow"></div>
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-orange-500/1 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '4s' }}></div>
+          {/* Animations de bulles et éclaboussures */}
+          <div className="absolute inset-0 pointer-events-none z-0">
+            {[...Array(12)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute rounded-full bg-cyan-400/10 animate-bubble"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  width: `${24 + Math.random() * 32}px`,
+                  height: `${24 + Math.random() * 32}px`,
+                  animationDelay: `${Math.random() * 8}s`,
+                  animationDuration: `${6 + Math.random() * 8}s`,
+                  filter: 'blur(1.5px)'
+                }}
+              />
+            ))}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-cyan-400/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '4s' }}></div>
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Contenu texte */}
+              {/* Contenu texte Ricci Carwash */}
               <div className="space-y-8">
                 <div>
                   <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-                    {t('home.about.title')}
+                    {t('about.title')}
                   </h2>
-                  <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-6">
-                    {t('home.about.description1')}
+                  <p className="text-lg sm:text-xl text-cyan-200 leading-relaxed mb-6">
+                    {t('about.description')}
                   </p>
-                  <p className="text-lg text-gray-400 leading-relaxed mb-8">
-                    {t('home.about.description2')}
+                  <p className="text-lg text-cyan-100 leading-relaxed mb-8">
+                    {t('about.slogan')}
                   </p>
                 </div>
-
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-red-500 mb-2">20+</div>
-                    <div className="text-gray-300">{t('home.about.stats.years')}</div>
+                    <div className="text-3xl font-bold text-blue-400 mb-2">{t('about.stats.expertise.number')}</div>
+                    <div className="text-cyan-100">{t('about.stats.expertise.label')}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-red-500 mb-2">5000+</div>
-                    <div className="text-gray-300">{t('home.about.stats.clients')}</div>
+                    <div className="text-3xl font-bold text-blue-400 mb-2">{t('about.stats.vehicles.number')}</div>
+                    <div className="text-cyan-100">{t('about.stats.vehicles.label')}</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-3xl font-bold text-red-500 mb-2">100%</div>
-                    <div className="text-gray-300">{t('home.about.stats.passion')}</div>
+                    <div className="text-3xl font-bold text-blue-400 mb-2">{t('about.stats.satisfaction.number')}</div>
+                    <div className="text-cyan-100">{t('about.stats.satisfaction.label')}</div>
                   </div>
                 </div>
               </div>
 
-              {/* Composition Fusion Sophistiquée */}
-              <div className="relative h-[600px] w-full overflow-hidden">
-                {/* Image principale (Picci_7) - Base layer */}
-                <div 
-                  className={`absolute inset-0 transform transition-all duration-1500 ease-out ${
-                    isLoaded ? 'scale-100 opacity-100' : 'scale-105 opacity-0'
-                  }`}
-                  style={{ transitionDelay: '300ms' }}
-                >
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)]">
-                    <img 
-                      src="/Picci_7.jpg" 
-                      alt="Ambiance barbershop professionnelle" 
-                      className="w-full h-full object-cover transition-transform duration-[3000ms] ease-out hover:scale-102"
-                    />
-                  </div>
-                </div>
-                
-                {/* Image secondaire (Picci_14) - Fusion layer avec masque radial */}
-                <div 
-                  className={`absolute inset-0 transform transition-all duration-2000 ease-out ${
-                    isLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  style={{ 
-                    transitionDelay: '800ms',
-                    maskImage: 'radial-gradient(ellipse 60% 70% at 75% 50%, black 0%, black 40%, transparent 65%)',
-                    WebkitMaskImage: 'radial-gradient(ellipse 60% 70% at 75% 50%, black 0%, black 40%, transparent 65%)'
-                  }}
-                >
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden">
+              {/* Image Ricci Carwash - voiture/lavage auto */}
+              <div className="relative h-[420px] w-full overflow-hidden flex items-center justify-center">
+                <div className={`absolute inset-0 transform transition-all duration-1500 ease-out ${isLoaded ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`} style={{ transitionDelay: '300ms' }}>
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] group">
+                    {/* Image principale */}
                     <img 
                       src="/Picci_14.jpg" 
-                      alt="Maître barbier au travail" 
-                      className="w-full h-full object-cover transition-transform duration-[3000ms] ease-out hover:scale-102"
-                      style={{ 
-                        transform: 'translateX(20%) scale(1.1)',
-                        filter: 'sepia(10%) saturate(120%) brightness(95%)'
-                      }}
+                      alt="Enseigne Ricci Carwash" 
+                      className="w-full h-full object-cover transition-transform duration-[3000ms] ease-out group-hover:scale-105"
                     />
+                    {/* Overlay bleu/cyan subtil */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-cyan-400/10 to-transparent pointer-events-none"></div>
+                    {/* Vignettage/flou sur les bords */}
+                    <div className="absolute inset-0 pointer-events-none" style={{boxShadow:'0 0 80px 40px rgba(0,0,0,0.25) inset'}}></div>
+                    {/* Reflet animé (shine) */}
+                    <div className="absolute left-[-30%] top-1/4 w-2/3 h-1/3 rotate-12 bg-gradient-to-r from-white/60 to-transparent rounded-full blur-2xl opacity-30 animate-shine-effect pointer-events-none" />
                   </div>
                 </div>
-                
-                {/* Couche de fusion avec dégradé complexe */}
+                {/* Bulles animées devant la voiture */}
+                {[...Array(6)].map((_, i) => (
                 <div 
-                  className={`absolute inset-0 transition-opacity duration-2500 ${
-                    isLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
+                    key={i}
+                    className="absolute rounded-full bg-cyan-300/30 animate-bubble"
                   style={{ 
-                    transitionDelay: '1200ms',
-                    background: `
-                      radial-gradient(ellipse 50% 60% at 75% 45%, rgba(220, 38, 38, 0.08) 0%, transparent 50%),
-                      linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(220, 38, 38, 0.05) 30%, transparent 60%),
-                      linear-gradient(45deg, transparent 40%, rgba(139, 69, 19, 0.06) 50%, transparent 70%)
-                    `
-                  }}
-                />
-                
-                {/* Effet de morphing border */}
-                <div 
-                  className={`absolute inset-0 rounded-2xl transition-all duration-2000 ${
-                    isLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  style={{ 
-                    transitionDelay: '1600ms',
-                    background: `
-                      linear-gradient(45deg, transparent 0%, rgba(220, 38, 38, 0.1) 48%, rgba(220, 38, 38, 0.2) 50%, rgba(220, 38, 38, 0.1) 52%, transparent 100%)
-                    `,
-                    maskImage: 'linear-gradient(black, black) content-box, linear-gradient(black, black)',
-                    WebkitMaskImage: 'linear-gradient(black, black) content-box, linear-gradient(black, black)',
-                    maskComposite: 'exclude',
-                    WebkitMaskComposite: 'xor',
-                    padding: '2px'
-                  }}
-                />
-                
-                {/* Subtle glow effect */}
-                <div 
-                  className={`absolute inset-0 transition-opacity duration-3000 ${
-                    isLoaded ? 'opacity-100' : 'opacity-0'
-                  }`}
-                  style={{ 
-                    transitionDelay: '2000ms',
-                    background: 'radial-gradient(ellipse 80% 60% at center, rgba(220, 38, 38, 0.03) 0%, transparent 70%)',
-                    filter: 'blur(1px)'
-                  }}
-                />
-                
-                {/* Highlight strip pour unifier la composition */}
-                <div 
-                  className={`absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-red-500/20 to-transparent transform transition-all duration-1500 ${
-                    isLoaded ? 'opacity-100 scale-y-100' : 'opacity-0 scale-y-0'
-                  }`}
-                  style={{ 
-                    left: '62%',
-                    transitionDelay: '1800ms',
+                      left: `${30 + Math.random() * 40}%`,
+                      top: `${60 + Math.random() * 30}%`,
+                      width: `${16 + Math.random() * 24}px`,
+                      height: `${16 + Math.random() * 24}px`,
+                      animationDelay: `${i * 0.7 + Math.random()}s`,
+                      animationDuration: `${4 + Math.random() * 4}s`,
                     filter: 'blur(0.5px)'
                   }}
                 />
+                ))}
               </div>
             </div>
           </div>
@@ -471,7 +315,7 @@ const HomePage: React.FC = () => {
             {[...Array(6)].map((_, i) => (
               <div
                 key={i}
-                className="absolute w-0.5 h-0.5 bg-red-500/20 rounded-full animate-float"
+                className="absolute w-0.5 h-0.5 bg-blue-500/20 rounded-full animate-float"
                 style={{
                   left: `${Math.random() * 100}%`,
                   top: `${Math.random() * 100}%`,
@@ -480,7 +324,7 @@ const HomePage: React.FC = () => {
                 }}
               />
             ))}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-32 bg-red-500/1 rounded-full blur-3xl animate-pulse-slow"></div>
+            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-32 bg-blue-500/1 rounded-full blur-3xl animate-pulse-slow"></div>
           </div>
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
@@ -509,7 +353,7 @@ const HomePage: React.FC = () => {
                       value={formData.name}
                       onChange={handleFormChange}
                       required
-                      className="w-full px-4 py-3 bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 hover:border-gray-600"
+                      className="w-full px-4 py-3 bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-600"
                       placeholder={t('home.contact.form.namePlaceholder')}
                     />
                   </div>
@@ -525,7 +369,7 @@ const HomePage: React.FC = () => {
                       value={formData.email}
                       onChange={handleFormChange}
                       required
-                      className="w-full px-4 py-3 bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 hover:border-gray-600"
+                      className="w-full px-4 py-3 bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-600"
                       placeholder={t('home.contact.form.emailPlaceholder')}
                     />
                   </div>
@@ -541,28 +385,27 @@ const HomePage: React.FC = () => {
                       onChange={handleFormChange}
                       required
                       rows={5}
-                      className="w-full px-4 py-3 bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-300 hover:border-gray-600 resize-none"
+                      className="w-full px-4 py-3 bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-600 resize-none"
                       placeholder={t('home.contact.form.messagePlaceholder')}
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="group relative w-full px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-lg overflow-hidden transition-all duration-500 ease-out
-                      hover:from-red-700 hover:to-red-800 hover:shadow-[0_20px_40px_-12px_rgba(220,38,38,0.4)]
+                    className="group relative w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg overflow-hidden transition-all duration-500 ease-out
+                      hover:from-blue-700 hover:to-cyan-600 hover:shadow-[0_20px_40px_-12px_rgba(0,255,255,0.15)]
                       transform hover:scale-[1.01] hover:-translate-y-0.5 
                       active:scale-[0.99] active:translate-y-0
                       before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-700 before:ease-out hover:before:translate-x-[100%]
-                      after:absolute after:inset-0 after:bg-gradient-to-br after:from-red-400/20 after:via-transparent after:to-red-900/20 after:opacity-0 after:transition-opacity after:duration-500 hover:after:opacity-100
-                      focus:ring-2 focus:ring-red-500/50 focus:ring-offset-2 focus:ring-offset-gray-800"
+                      after:absolute after:inset-0 after:bg-gradient-to-br after:from-blue-400/20 after:via-transparent after:to-cyan-900/20 after:opacity-0 after:transition-opacity after:duration-500 hover:after:opacity-100
+                      focus:ring-2 focus:ring-cyan-400/50 focus:ring-offset-2 focus:ring-offset-gray-800"
                   >
                     <span className="relative z-10 transition-all duration-300 group-hover:text-shadow-glow flex items-center justify-center gap-2">
                       <span>{t('home.contact.form.submit')}</span>
-                      <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                       </svg>
                     </span>
-                    
                     {/* Send animation particles */}
                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       <div className="absolute top-1/2 left-1/3 w-1 h-1 bg-white/60 rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></div>
@@ -579,21 +422,21 @@ const HomePage: React.FC = () => {
                   <h3 className="text-2xl font-bold text-white mb-6">{t('home.contact.info.title')}</h3>
                   <div className="space-y-4">
                     <div className="flex items-start space-x-4">
-                      <div className="w-6 h-6 mt-1 text-red-400">📍</div>
+                      <div className="w-6 h-6 mt-1 text-cyan-400">📍</div>
                       <div>
                         <p className="text-white font-medium">{t('home.contact.info.address.label')}</p>
                         <p className="text-gray-300">{t('home.contact.info.address.street')}<br />{t('home.contact.info.address.city')}</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                      <div className="w-6 h-6 mt-1 text-red-400">📞</div>
+                      <div className="w-6 h-6 mt-1 text-cyan-400">📞</div>
                       <div>
                         <p className="text-white font-medium">{t('home.contact.info.phone.label')}</p>
                         <p className="text-gray-300">{t('home.contact.info.phone.number')}</p>
                       </div>
                     </div>
                     <div className="flex items-start space-x-4">
-                      <div className="w-6 h-6 mt-1 text-red-400">✉️</div>
+                      <div className="w-6 h-6 mt-1 text-cyan-400">✉️</div>
                       <div>
                         <p className="text-white font-medium">{t('home.contact.info.email.label')}</p>
                         <p className="text-gray-300">{t('home.contact.info.email.address')}</p>

@@ -34,14 +34,23 @@ const HeroSection: React.FC = () => {
         ))}
         
         {/* Animated Gradient Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-red-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 bg-orange-500/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-40 h-40 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
         
         {/* Moving Lines */}
         <div className="absolute inset-0">
           <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent animate-slide-right"></div>
-          <div className="absolute bottom-0 right-0 w-full h-px bg-gradient-to-l from-transparent via-red-500/30 to-transparent animate-slide-left"></div>
+          <div className="absolute bottom-0 right-0 w-full h-px bg-gradient-to-l from-transparent via-cyan-500/30 to-transparent animate-slide-left"></div>
         </div>
+      </div>
+
+      {/* Overlay Image */}
+      <div className="absolute inset-0 z-5">
+        <img 
+          src="/Picci_8.jpg" 
+          alt="Ricci Carwash Interior" 
+          className="w-full h-full object-cover opacity-30 mix-blend-overlay"
+        />
       </div>
 
       <div className="relative z-10 flex flex-col justify-center min-h-screen py-16 sm:py-20">
@@ -61,7 +70,7 @@ const HeroSection: React.FC = () => {
               <p className={`text-base sm:text-lg md:text-xl lg:text-xl text-gray-300 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-2xl mx-auto px-4 sm:px-0 transform transition-all duration-1000 delay-300 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0'
               }`}>
-                {t('hero.description')}
+                {t('hero.subtitle')}
               </p>
             </div>
             
@@ -107,8 +116,8 @@ const HeroSection: React.FC = () => {
 
       {/* Animated Border Glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-red-500/50 to-transparent animate-glow"></div>
-        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-orange-500/50 to-transparent animate-glow" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent animate-glow"></div>
+        <div className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-blue-500/50 to-transparent animate-glow" style={{ animationDelay: '1s' }}></div>
       </div>
     </section>
   );

@@ -14,111 +14,111 @@ export interface ServiceCategory {
 
 export const servicesData: ServiceCategory[] = [
   {
-    title: "CUTTING",
-    titleKey: "services.category.cutting",
+    title: "LAVAGE EXTÉRIEUR",
+    titleKey: "services.category.exterior",
     services: [
       {
-        name: "Cut",
-        nameKey: "services.cut.name",
-        price: "35 CAD $",
-        description: "Cutting including ear hair/eyebrow touching up",
-        descriptionKey: "services.cut.description"
-      },
-      {
-        name: "Cut + Beard",
-        nameKey: "services.cutBeard.name",
-        price: "35 CAD $",
-        description: "Cutting and beard including ear hair/eyebrows",
-        descriptionKey: "services.cutBeard.description"
-      },
-      {
-        name: "Cutting up to 13 years",
-        nameKey: "services.cutChild.name",
-        price: "18 CAD $",
-        description: "Cutting for children up to 13 years old",
-        descriptionKey: "services.cutChild.description"
-      },
-      {
-        name: "Cut 60+",
-        nameKey: "services.cut60.name",
-        price: "20 CAD $",
-        description: "Cutting for people 60 years or older",
-        descriptionKey: "services.cut60.description"
-      },
-      {
-        name: "Hair clipper 1 length",
-        nameKey: "services.clipper.name",
-        price: "18 CAD $",
-        description: "One clipper setting full head",
-        descriptionKey: "services.clipper.description"
-      }
-    ]
-  },
-  {
-    title: "BEARD",
-    titleKey: "services.category.beard",
-    services: [
-      {
-        name: "Beard",
-        nameKey: "services.beard.name",
-        price: "18 CAD $",
-        description: "Shaping and shaving the beard",
-        descriptionKey: "services.beard.description"
-      },
-      {
-        name: "Classic Shaving",
-        nameKey: "services.classicShaving.name",
-        price: "18 CAD $",
-        description: "A classic shave",
-        descriptionKey: "services.classicShaving.description"
-      },
-      {
-        name: "Beard Trim + Styling",
-        nameKey: "services.beardTrim.name",
+        name: "Lavage Express",
+        nameKey: "services.express.name",
         price: "25 CAD $",
-        description: "Professional beard trimming and styling",
-        descriptionKey: "services.beardTrim.description"
+        description: "Lavage extérieur complet avec séchage à la main",
+        descriptionKey: "services.express.description"
       },
       {
-        name: "Mustache Trim",
-        nameKey: "services.mustache.name",
-        price: "12 CAD $",
-        description: "Precision mustache trimming and shaping",
-        descriptionKey: "services.mustache.description"
+        name: "Lavage Premium",
+        nameKey: "services.premium.name",
+        price: "35 CAD $",
+        description: "Lavage extérieur + protection céramique express",
+        descriptionKey: "services.premium.description"
+      },
+      {
+        name: "Polish & Cire",
+        nameKey: "services.polish.name",
+        price: "120 CAD $",
+        description: "Polish complet de la carrosserie + protection cire",
+        descriptionKey: "services.polish.description"
+      },
+      {
+        name: "Traitement Jantes",
+        nameKey: "services.wheels.name",
+        price: "30 CAD $",
+        description: "Nettoyage approfondi des jantes et pneus",
+        descriptionKey: "services.wheels.description"
+      },
+      {
+        name: "Protection Céramique",
+        nameKey: "services.ceramic.name",
+        price: "250 CAD $",
+        description: "Application protection céramique longue durée",
+        descriptionKey: "services.ceramic.description"
       }
     ]
   },
   {
-    title: "OTHERS",
-    titleKey: "services.category.others",
+    title: "LAVAGE INTÉRIEUR",
+    titleKey: "services.category.interior",
     services: [
       {
-        name: "VIP Treatment",
-        nameKey: "services.vip.name",
-        price: "53 CAD $",
-        description: "Wash, cut, beard, wax ears and nose, choice of wax",
-        descriptionKey: "services.vip.description"
+        name: "Aspiration Complète",
+        nameKey: "services.vacuum.name",
+        price: "30 CAD $",
+        description: "Aspiration approfondie de l'habitacle et coffre",
+        descriptionKey: "services.vacuum.description"
       },
       {
-        name: "Hair Wash + Styling",
-        nameKey: "services.hairWash.name",
-        price: "15 CAD $",
-        description: "Professional hair wash and styling service",
-        descriptionKey: "services.hairWash.description"
+        name: "Nettoyage Sièges",
+        nameKey: "services.seats.name",
+        price: "45 CAD $",
+        description: "Nettoyage en profondeur des sièges et tissus",
+        descriptionKey: "services.seats.description"
       },
       {
-        name: "Eyebrow Trimming",
-        nameKey: "services.eyebrow.name",
-        price: "8 CAD $",
-        description: "Precise eyebrow shaping and trimming",
-        descriptionKey: "services.eyebrow.description"
+        name: "Désinfection",
+        nameKey: "services.sanitize.name",
+        price: "35 CAD $",
+        description: "Désinfection complète de l'habitacle",
+        descriptionKey: "services.sanitize.description"
       },
       {
-        name: "Hot Towel Treatment",
-        nameKey: "services.hotTowel.name",
-        price: "10 CAD $",
-        description: "Relaxing hot towel facial treatment",
-        descriptionKey: "services.hotTowel.description"
+        name: "Cuir Treatment",
+        nameKey: "services.leather.name",
+        price: "55 CAD $",
+        description: "Nettoyage et protection des surfaces en cuir",
+        descriptionKey: "services.leather.description"
+      }
+    ]
+  },
+  {
+    title: "SERVICES PREMIUM",
+    titleKey: "services.category.premium",
+    services: [
+      {
+        name: "Détailing Complet",
+        nameKey: "services.detailing.name",
+        price: "250 CAD $",
+        description: "Service complet intérieur/extérieur avec protection",
+        descriptionKey: "services.detailing.description"
+      },
+      {
+        name: "Nettoyage Moteur",
+        nameKey: "services.engine.name",
+        price: "75 CAD $",
+        description: "Nettoyage et dégraissage du compartiment moteur",
+        descriptionKey: "services.engine.description"
+      },
+      {
+        name: "Correction Peinture",
+        nameKey: "services.paint.name",
+        price: "180 CAD $",
+        description: "Correction des défauts de peinture et micro-rayures",
+        descriptionKey: "services.paint.description"
+      },
+      {
+        name: "Protection Hivernale",
+        nameKey: "services.winter.name",
+        price: "150 CAD $",
+        description: "Protection complète pour l'hiver",
+        descriptionKey: "services.winter.description"
       }
     ]
   }

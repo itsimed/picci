@@ -14,10 +14,28 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Ballsye';
+  src: url('/fonts/Ballsye.ttf') format('truetype'),
+       url('./fonts/Ballsye.ttf') format('truetype'),
+       url('../public/fonts/Ballsye.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Classe pour utiliser la police Graffiti Youth */
 .font-grafity-youth {
   font-family: 'GraffitiYouth', 'Marker Felt', 'Comic Sans MS', cursive, sans-serif;
   letter-spacing: 0.02em;
+  text-rendering: optimizeLegibility;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.font-ballsye {
+  font-family: 'Ballsye', 'Arial Black', Arial, sans-serif;
+  letter-spacing: 0.01em;
   text-rendering: optimizeLegibility;
   font-weight: 400;
   font-style: normal;

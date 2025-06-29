@@ -5,9 +5,10 @@ import { useLanguage } from '../contexts/LanguageContext';
 interface NavbarProps {
   logo: string;
   siteName?: string;
+  forceBlackBg?: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ logo, siteName }) => {
+const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { currentLanguage, setCurrentLanguage, t } = useLanguage();
@@ -93,12 +94,6 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName }) => {
       isActive: location.pathname === '/catalog'
     },
     { 
-      label: t('nav.products'), 
-      type: 'navigate', 
-      href: '/products',
-      isActive: location.pathname === '/products'
-    },
-    { 
       label: t('nav.about'), 
       type: 'scroll-section', 
       target: 'about',
@@ -116,9 +111,11 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName }) => {
     <>
       {/* Navbar */}
       <nav className={`fixed z-50 transition-all duration-700 ease-out ${
-        isScrolled 
-          ? 'top-4 left-8 right-8 bg-black/20 backdrop-blur-2xl rounded-2xl shadow-xl shadow-black/30 scale-95 transform' 
-          : 'top-0 left-0 right-0 bg-transparent scale-100 transform'
+        forceBlackBg
+          ? 'top-0 left-0 right-0 bg-black !bg-opacity-100 !backdrop-blur-none !shadow-none'
+          : isScrolled 
+            ? 'top-4 left-8 right-8 bg-black/20 backdrop-blur-2xl rounded-2xl shadow-xl shadow-black/30 scale-95 transform' 
+            : 'top-0 left-0 right-0 bg-transparent scale-100 transform'
       }`}>
         {/* Gradient overlay for scrolled state */}
         {isScrolled && (
@@ -152,14 +149,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName }) => {
                 className="group bg-transparent"
                 style={{ background: 'none', border: 'none', boxShadow: 'none' }}
               >
-                <div className={`text-white font-bold tracking-wide relative transition-all duration-700 ease-out ${
-                  isScrolled ? 'text-lg lg:text-xl' : 'text-xl lg:text-2xl'
-                }`}>
-                  <span className="text-white group-hover:text-red-400 transition-all duration-500">
-                    {siteName}
-                  </span>
-                  <div className="absolute -bottom-1 left-0 h-0.5 w-0 bg-gradient-to-r from-red-500 to-orange-500 group-hover:w-full transition-all duration-500"></div>
-                </div>
+                {/* Texte du nom du site supprimé, ne laisse que le logo */}
               </button>
             </div>
 
@@ -174,8 +164,8 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName }) => {
                      isScrolled ? 'text-sm lg:text-base' : 'text-base lg:text-lg'
                    } ${
                      item.isActive 
-                       ? 'text-red-400' 
-                       : 'text-gray-300 hover:text-red-400'
+                       ? 'text-blue-400' 
+                       : 'text-gray-300 hover:text-blue-400'
                    }`}
                    style={{ background: 'none', border: 'none', boxShadow: 'none' }}
                  >
@@ -185,7 +175,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName }) => {
                    </span>
                    
                    {/* Animated underline from center */}
-                   <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-red-400 via-red-500 to-orange-400 transition-all duration-500 ease-out shadow-lg shadow-red-500/50 ${
+                   <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 transition-all duration-500 ease-out shadow-lg shadow-blue-500/50 ${
                      item.isActive ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'
                    }`}></div>
 
@@ -195,7 +185,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName }) => {
                {/* Language Toggle - Bordered Style */}
                <button
                  onClick={toggleLanguage}
-                 className={`relative font-medium transition-all duration-700 ease-out group text-gray-300 hover:text-red-400 bg-transparent border border-gray-600 hover:border-red-400 rounded-lg outline-none ${
+                 className={`relative font-medium transition-all duration-700 ease-out group text-gray-300 hover:text-blue-400 bg-transparent border border-gray-600 hover:border-blue-400 rounded-lg outline-none ${
                    isScrolled ? 'px-3 py-1 text-xs lg:text-sm' : 'px-4 py-2 text-sm lg:text-base'
                  }`}
                >
@@ -210,7 +200,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName }) => {
               {/* Mobile Language Toggle */}
               <button
                 onClick={toggleLanguage}
-                className={`font-medium transition-all duration-700 ease-out text-gray-300 hover:text-red-400 hover:scale-105 bg-transparent border border-gray-600 hover:border-red-400 rounded-lg outline-none ${
+                className={`font-medium transition-all duration-700 ease-out text-gray-300 hover:text-blue-400 hover:scale-105 bg-transparent border border-gray-600 hover:border-blue-400 rounded-lg outline-none ${
                   isScrolled ? 'px-2 py-1 text-xs' : 'px-3 py-2 text-sm'
                 }`}
               >
@@ -228,7 +218,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName }) => {
                 aria-label={t('navbar.menuLabel')}
               >
                 <svg
-                  className={`text-gray-300 group-hover:text-red-400 transition-all duration-700 ease-out group-hover:scale-110 group-hover:drop-shadow-lg ${
+                  className={`text-gray-300 group-hover:text-blue-400 transition-all duration-700 ease-out group-hover:scale-110 group-hover:drop-shadow-lg ${
                     isScrolled ? 'h-5 w-5' : 'h-6 w-6'
                   }`}
                   stroke="currentColor"

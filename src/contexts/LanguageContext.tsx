@@ -16,24 +16,32 @@ const translations: Translations = {
   'nav.contact': { fr: 'Contact', en: 'Contact' },
   'nav.language': { fr: 'EN', en: 'FR' },
 
-  // Hero section - Barbershop
-  'hero.title': { fr: 'Votre Barbier Professionnel', en: 'Your Professional Barber' },
-  'hero.heading': { fr: 'Votre Barbier Professionnel', en: 'Your Professional Barber' },
-  'hero.subtitle': { fr: 'L\'art de la coiffure masculine depuis des générations', en: 'The art of men\'s grooming for generations' },
-  'hero.description': { fr: 'Découvrez l\'excellence du service barbier traditionnel avec des techniques modernes.', en: 'Discover excellence in traditional barber service with modern techniques.' },
-  'hero.cta': { fr: 'Prendre Rendez-vous', en: 'Book Appointment' },
+  // Hero section - Carwash
+  'hero.title': { fr: 'Clean. Shine. Drive.', en: 'Clean. Shine. Drive.' },
+  'hero.heading': { fr: 'Clean. Shine. Drive.', en: 'Clean. Shine. Drive.' },
+  'hero.subtitle': { fr: 'Offrez à votre véhicule l\'éclat qu\'il mérite, chaque jour', en: 'Give your vehicle the shine it deserves, every day' },
+  'hero.description': { fr: 'Découvrez l\'excellence du lavage automobile avec nos techniques modernes et notre service premium.', en: 'Discover excellence in car washing with our modern techniques and premium service.' },
+  'hero.cta': { fr: 'Faites-la briller maintenant', en: 'Make it shine now' },
   'hero.cta.scrollDown': { fr: 'Découvrir nos services', en: 'Discover our services' },
 
-  // About section - Barbershop
-  'about.title': { fr: 'L\'Histoire de Notre Barbershop', en: 'Our Barbershop Story' },
-  'about.subtitle': { fr: 'Tradition, Excellence et Passion', en: 'Tradition, Excellence and Passion' },
-  'about.description': { fr: 'Depuis notre ouverture, nous nous engageons à offrir un service de qualité supérieure, alliant techniques traditionnelles et innovations modernes pour vous garantir une expérience unique.', en: 'Since our opening, we are committed to providing superior service, combining traditional techniques with modern innovations to guarantee you a unique experience.' },
-  'about.history.title': { fr: 'Notre Histoire', en: 'Our History' },
-  'about.history.p1': { fr: 'Depuis plus de 25 ans, notre barbershop se distingue par son approche authentique et personnalisée. Nous perpétuons les traditions du métier tout en adoptant les techniques les plus modernes.', en: 'For more than 25 years, our barbershop has distinguished itself through its authentic and personalized approach. We perpetuate the traditions of the trade while adopting the most modern techniques.' },
-  'about.history.p2': { fr: 'Chaque client est unique et mérite un service sur mesure. Notre équipe de barbiers expérimentés met tout en œuvre pour vous offrir une expérience exceptionnelle à chaque visite.', en: 'Each client is unique and deserves tailor-made service. Our team of experienced barbers does everything possible to offer you an exceptional experience with each visit.' },
-  'about.experience': { fr: 'Années d\'expérience', en: 'Years of experience' },
-  'about.vehiclesSold': { fr: 'Clients satisfaits', en: 'Satisfied clients' },
-  'about.imageAlt': { fr: 'Intérieur du barbershop', en: 'Barbershop interior' },
+  // About section - Ricci Carwash
+  'about.title': { fr: 'Plus qu\'un lavage, une tradition.', en: 'More than a wash, a tradition.' },
+  'about.description': { fr: "Depuis plus de 10 ans, Ricci Carwash transforme chaque lavage en rituel.", en: "For over 10 years, Ricci Carwash transforms every wash into a ritual." },
+  'about.description2': { fr: "Mousse riche, finition miroir, et technologie de pointe s'unissent pour révéler l'éclat authentique de votre voiture.", en: "Rich foam, mirror finish, and cutting-edge technology unite to reveal your car's authentic shine." },
+  'about.slogan': { fr: "Mousse riche, finition miroir, et technologie de pointe s'unissent pour révéler l'éclat authentique de votre voiture.", en: "Rich foam, mirror finish, and cutting-edge technology unite to reveal your car's authentic shine." },
+  'about.motto': { fr: "Speed. Style. Satisfaction.", en: "Speed. Style. Satisfaction." },
+  'about.experience.text': { fr: "Vivez une expérience rapide, efficace et toujours au top, parce que votre voiture mérite mieux qu'un simple rinçage.", en: "Experience speed, efficiency and always top quality, because your car deserves better than a simple rinse." },
+  'about.cta': { fr: "➤ Repartez propres. Brillez sur la route.", en: "➤ Leave clean. Shine on the road." },
+  'about.stats.expertise.number': { fr: "+10 ans", en: "+10 years" },
+  'about.stats.expertise.text': { fr: "d'expertise – De confiance dans le detailing auto", en: "of expertise – Trusted in auto detailing" },
+  'about.stats.expertise.label': { fr: "Expertise", en: "Expertise" },
+  'about.stats.vehicles.number': { fr: "+4000", en: "+4000" },
+  'about.stats.vehicles.text': { fr: "véhicules lavés – Et toujours en croissance", en: "vehicles washed – And still growing" },
+  'about.stats.vehicles.label': { fr: "Véhicules traités", en: "Vehicles Treated" },
+  'about.stats.satisfaction.number': { fr: "99%", en: "99%" },
+  'about.stats.satisfaction.text': { fr: "de clients satisfaits – Et ils reviennent !", en: "satisfied customers – And they come back!" },
+  'about.stats.satisfaction.label': { fr: "Clients satisfaits", en: "Satisfied Customers" },
+  'about.imageAlt': { fr: "Intérieur du centre de lavage Ricci Carwash", en: "Inside Ricci Carwash center" },
 
   // Features section - Barbershop
   'features.title': { fr: 'L\'Expertise Barbier : Votre Garantie de Style', en: 'Barber Expertise: Your Style Guarantee' },
@@ -158,16 +166,24 @@ const translations: Translations = {
   'navbar.menuLabel': { fr: 'Menu principal', en: 'Main menu' },
   
   // Common
-  'common.seeMore': { fr: 'Découvrir', en: 'Discover' },
+  'common.seeMore': { fr: 'En savoir plus', en: 'Learn more' },
   'common.loading': { fr: 'Chargement...', en: 'Loading...' },
+  'common.viewAll': { fr: 'Voir tous nos services', en: 'View all our services' },
+  'common.learnMore': { fr: 'En savoir plus →', en: 'Learn more →' },
   
   // Footer
-  'footer.description': { fr: 'Votre barbershop de confiance pour une expérience de coiffure authentique et moderne.', en: 'Your trusted barbershop for an authentic and modern grooming experience.' },
+  'footer.brandName': { fr: 'Ricci Carwash', en: 'Ricci Carwash' },
+  'footer.slogan': { fr: 'Peu importe l\'état, repartez propres', en: 'No matter the condition, leave clean' },
+  'footer.description': { fr: 'Votre centre de lavage de confiance pour une expérience automobile authentique et moderne.', en: 'Your trusted car wash center for an authentic and modern automotive experience.' },
   'footer.quickLinks': { fr: 'Liens Rapides', en: 'Quick Links' },
   'footer.services': { fr: 'Services', en: 'Services' },
   'footer.contact': { fr: 'Contact', en: 'Contact' },
   'footer.followUs': { fr: 'Suivez-nous', en: 'Follow Us' },
   'footer.rights': { fr: 'Tous droits réservés.', en: 'All rights reserved.' },
+  'footer.email': { fr: 'contact@riccicarwash.com', en: 'contact@riccicarwash.com' },
+
+  // Social Media
+  'social.follow': { fr: 'Suivre sur {platform}', en: 'Follow on {platform}' },
 
   // Service Categories
   'services.category.cutting': { fr: 'COUPE', en: 'CUTTING' },
@@ -203,23 +219,53 @@ const translations: Translations = {
   'services.hairWash.description': { fr: 'Service professionnel de lavage et styling', en: 'Professional hair wash and styling service' },
   'services.eyebrow.name': { fr: 'Épilation Sourcils', en: 'Eyebrow Trimming' },
   'services.eyebrow.description': { fr: 'Façonnage et épilation précise des sourcils', en: 'Precise eyebrow shaping and trimming' },
-      'services.hotTowel.name': { fr: 'Traitement Serviette Chaude', en: 'Hot Towel Treatment' },
-    'services.hotTowel.description': { fr: 'Traitement facial relaxant à la serviette chaude', en: 'Relaxing hot towel facial treatment' },
+  'services.hotTowel.name': { fr: 'Traitement Serviette Chaude', en: 'Hot Towel Treatment' },
+  'services.hotTowel.description': { fr: 'Traitement facial relaxant à la serviette chaude', en: 'Relaxing hot towel facial treatment' },
 
-    // Product descriptions
-    'products.descriptions.level3HairConditioner': { fr: 'Après-shampoing nourrissant pour tous types de cheveux. Il revitalise, hydrate et adoucit la fibre capillaire.', en: 'Nourishing conditioner for all hair types. It revitalizes, hydrates and softens the hair fiber.' },
-    'products.descriptions.bullfrogBotanicalButter': { fr: 'Beurre nourrissant pour barbe et cheveux, enrichi en extraits botaniques. Apporte douceur, éclat et protection.', en: 'Nourishing butter for beard and hair, enriched with botanical extracts. Provides softness, shine and protection.' },
-    'products.descriptions.daimonBarberTextureClay': { fr: 'Argile coiffante à tenue forte et fini mat. Idéal pour les coiffures structurées avec effet naturel.', en: 'Styling clay with strong hold and matte finish. Ideal for structured hairstyles with natural effect.' },
-    'products.descriptions.layriteNaturalMatteCream': { fr: 'Crème coiffante à finition mate, tenue moyenne. Look naturel, souple et propre.', en: 'Styling cream with matte finish, medium hold. Natural, flexible and clean look.' },
-    'products.descriptions.layriteOriginalPomade': { fr: 'Pomade classique à brillance modérée et tenue moyenne. S\'élimine à l\'eau, parfaite pour les styles rétro.', en: 'Classic pomade with moderate shine and medium hold. Water-soluble, perfect for retro styles.' },
-    'products.descriptions.layriteSuperholdPomade': { fr: 'Tenue extrême pour cheveux épais ou difficiles à coiffer. Brillance moyenne, fixation longue durée.', en: 'Extreme hold for thick or difficult-to-style hair. Medium shine, long-lasting fixation.' },
-    'products.descriptions.layriteSupershineCream': { fr: 'Crème coiffante haute brillance, tenue souple. Pour des styles lissés et élégants.', en: 'High-shine styling cream, flexible hold. For sleek and elegant styles.' },
-    'products.descriptions.bullfrogSecretPotion': { fr: 'Gel douche multi-usage cheveux, barbe et corps. Nettoyage doux et parfum signature Bullfrog.', en: 'Multi-use hair, beard and body wash gel. Gentle cleansing and signature Bullfrog fragrance.' },
-    'products.descriptions.captainFawcettSeaSaltSpray': { fr: 'Spray texturisant aux minéraux marins. Apporte volume et mouvement naturel sans alourdir.', en: 'Texturizing spray with marine minerals. Provides volume and natural movement without weighing down.' },
-    'products.descriptions.dapperDanHairBodyShampoo': { fr: 'Shampoing 2-en-1 pour cheveux et corps. Mousse riche, nettoyage efficace et parfum vintage.', en: '2-in-1 shampoo for hair and body. Rich lather, effective cleansing and vintage fragrance.' },
-    'products.descriptions.uppercutDeluxeClearScalp': { fr: 'Shampoing purifiant. Nettoie le cuir chevelu en profondeur tout en éliminant les résidus de coiffage.', en: 'Purifying shampoo. Deep cleanses the scalp while removing styling residue.' },
-    'products.descriptions.reuzelSurfTonic': { fr: 'Tonique texturisant effet plage. Volume naturel, finition mate, parfaite base avant coiffage.', en: 'Beach-effect texturizing tonic. Natural volume, matte finish, perfect base before styling.' },
-    'products.descriptions.oilCanGroomingStylingPowder': { fr: 'Poudre coiffante pour donner du volume, de la texture et une finition mate. Tenue légère et modulable.', en: 'Styling powder to add volume, texture and matte finish. Light and buildable hold.' },
+  // === CARWASH SERVICES ===
+  'services.express.name': { fr: 'Lavage Express', en: 'Express Wash' },
+  'services.express.description': { fr: 'Lavage extérieur complet avec séchage à la main', en: 'Full exterior wash with hand drying' },
+  'services.premium.name': { fr: 'Lavage Premium', en: 'Premium Wash' },
+  'services.premium.description': { fr: 'Lavage extérieur + protection céramique express', en: 'Exterior wash + express ceramic protection' },
+  'services.polish.name': { fr: 'Polish & Cire', en: 'Polish & Wax' },
+  'services.polish.description': { fr: 'Polish complet de la carrosserie + protection cire', en: 'Full body polish + wax protection' },
+  'services.wheels.name': { fr: 'Traitement Jantes', en: 'Wheel Treatment' },
+  'services.wheels.description': { fr: 'Nettoyage approfondi des jantes et pneus', en: 'Deep cleaning of wheels and tires' },
+  'services.ceramic.name': { fr: 'Protection Céramique', en: 'Ceramic Protection' },
+  'services.ceramic.description': { fr: 'Application protection céramique longue durée', en: 'Long-lasting ceramic protection application' },
+
+  'services.vacuum.name': { fr: 'Aspiration Complète', en: 'Full Vacuum' },
+  'services.vacuum.description': { fr: 'Aspiration approfondie de l\'habitacle et coffre', en: 'Deep vacuuming of cabin and trunk' },
+  'services.seats.name': { fr: 'Nettoyage Sièges', en: 'Seat Cleaning' },
+  'services.seats.description': { fr: 'Nettoyage en profondeur des sièges et tissus', en: 'Deep cleaning of seats and fabrics' },
+  'services.sanitize.name': { fr: 'Désinfection', en: 'Sanitization' },
+  'services.sanitize.description': { fr: 'Désinfection complète de l\'habitacle', en: 'Full cabin sanitization' },
+  'services.leather.name': { fr: 'Cuir Treatment', en: 'Leather Treatment' },
+  'services.leather.description': { fr: 'Nettoyage et protection des surfaces en cuir', en: 'Cleaning and protection of leather surfaces' },
+
+  'services.detailing.name': { fr: 'Détailing Complet', en: 'Full Detailing' },
+  'services.detailing.description': { fr: 'Service complet intérieur/extérieur avec protection', en: 'Full interior/exterior service with protection' },
+  'services.engine.name': { fr: 'Nettoyage Moteur', en: 'Engine Cleaning' },
+  'services.engine.description': { fr: 'Nettoyage et dégraissage du compartiment moteur', en: 'Engine compartment cleaning and degreasing' },
+  'services.paint.name': { fr: 'Correction Peinture', en: 'Paint Correction' },
+  'services.paint.description': { fr: 'Correction des défauts de peinture et micro-rayures', en: 'Correction of paint defects and micro-scratches' },
+  'services.winter.name': { fr: 'Protection Hivernale', en: 'Winter Protection' },
+  'services.winter.description': { fr: 'Protection complète pour l\'hiver', en: 'Complete winter protection' },
+
+  // Product descriptions
+  'products.descriptions.level3HairConditioner': { fr: 'Après-shampoing nourrissant pour tous types de cheveux. Il revitalise, hydrate et adoucit la fibre capillaire.', en: 'Nourishing conditioner for all hair types. It revitalizes, hydrates and softens the hair fiber.' },
+  'products.descriptions.bullfrogBotanicalButter': { fr: 'Beurre nourrissant pour barbe et cheveux, enrichi en extraits botaniques. Apporte douceur, éclat et protection.', en: 'Nourishing butter for beard and hair, enriched with botanical extracts. Provides softness, shine and protection.' },
+  'products.descriptions.daimonBarberTextureClay': { fr: 'Argile coiffante à tenue forte et fini mat. Idéal pour les coiffures structurées avec effet naturel.', en: 'Styling clay with strong hold and matte finish. Ideal for structured hairstyles with natural effect.' },
+  'products.descriptions.layriteNaturalMatteCream': { fr: 'Crème coiffante à finition mate, tenue moyenne. Look naturel, souple et propre.', en: 'Styling cream with matte finish, medium hold. Natural, flexible and clean look.' },
+  'products.descriptions.layriteOriginalPomade': { fr: 'Pomade classique à brillance modérée et tenue moyenne. S\'élimine à l\'eau, parfaite pour les styles rétro.', en: 'Classic pomade with moderate shine and medium hold. Water-soluble, perfect for retro styles.' },
+  'products.descriptions.layriteSuperholdPomade': { fr: 'Tenue extrême pour cheveux épais ou difficiles à coiffer. Brillance moyenne, fixation longue durée.', en: 'Extreme hold for thick or difficult-to-style hair. Medium shine, long-lasting fixation.' },
+  'products.descriptions.layriteSupershineCream': { fr: 'Crème coiffante haute brillance, tenue souple. Pour des styles lissés et élégants.', en: 'High-shine styling cream, flexible hold. For sleek and elegant styles.' },
+  'products.descriptions.bullfrogSecretPotion': { fr: 'Gel douche multi-usage cheveux, barbe et corps. Nettoyage doux et parfum signature Bullfrog.', en: 'Multi-use hair, beard and body wash gel. Gentle cleansing and signature Bullfrog fragrance.' },
+  'products.descriptions.captainFawcettSeaSaltSpray': { fr: 'Spray texturisant aux minéraux marins. Apporte volume et mouvement naturel sans alourdir.', en: 'Texturizing spray with marine minerals. Provides volume and natural movement without weighing down.' },
+  'products.descriptions.dapperDanHairBodyShampoo': { fr: 'Shampoing 2-en-1 pour cheveux et corps. Mousse riche, nettoyage efficace et parfum vintage.', en: '2-in-1 shampoo for hair and body. Rich lather, effective cleansing and vintage fragrance.' },
+  'products.descriptions.uppercutDeluxeClearScalp': { fr: 'Shampoing purifiant. Nettoie le cuir chevelu en profondeur tout en éliminant les résidus de coiffage.', en: 'Purifying shampoo. Deep cleanses the scalp while removing styling residue.' },
+  'products.descriptions.reuzelSurfTonic': { fr: 'Tonique texturisant effet plage. Volume naturel, finition mate, parfaite base avant coiffage.', en: 'Beach-effect texturizing tonic. Natural volume, matte finish, perfect base before styling.' },
+  'products.descriptions.oilCanGroomingStylingPowder': { fr: 'Poudre coiffante pour donner du volume, de la texture et une finition mate. Tenue légère et modulable.', en: 'Styling powder to add volume, texture and matte finish. Light and buildable hold.' },
 };
 
 interface LanguageContextType {
