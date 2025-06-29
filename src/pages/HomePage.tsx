@@ -102,17 +102,18 @@ const HomePage: React.FC = () => {
         <section className="h-screen xl:h-[110vh] flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
           {/* Background image principale */}
           <div className="absolute inset-0 z-0">
+            {/* Image desktop */}
             <img 
-              src={assets.back} 
-              alt="Car wash interior" 
-              className="w-full h-full object-cover opacity-30"
-            />
-            {/* Image Picci_8 en superposition */}
-            <img
               src="/Picci_8.jpg"
-              alt="Lave-auto Ricci Carwash"
-              className="w-full h-full object-cover absolute inset-0 opacity-80 mix-blend-overlay blur-[1px] pointer-events-none"
-              style={{ zIndex: 1 }}
+              alt="Lave-auto Ricci Carwash - Vue desktop"
+              className="hidden md:block w-full h-full object-cover opacity-30"
+            />
+            {/* Image mobile */}
+            <img 
+              src="/Picci_9.jpg"
+              alt="Lave-auto Ricci Carwash - Vue mobile"
+              className="block md:hidden w-full h-full object-cover opacity-30"
+              style={{ objectPosition: 'center 20%' }}
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-10"></div>
           </div>
