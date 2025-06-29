@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CutCard from '../components/CutCard';
@@ -10,6 +11,7 @@ import { getMiniServices } from '../data/servicesData';
 
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -51,7 +53,8 @@ const HomePage: React.FC = () => {
 
   const handleCutSelect = (cutId: string) => {
     console.log('Cut selected:', cutId);
-    // TODO: Navigation vers détails ou réservation
+    // Navigation vers la page catalogue avec l'ID de la coupe
+    navigate(`/catalog?cut=${cutId}`);
   };
 
   return (
@@ -291,8 +294,8 @@ const HomePage: React.FC = () => {
 
             {/* Call to Action */}
             <div className="text-center">
-              <a 
-                href="/catalog"
+              <Link 
+                to="/catalog"
                 className="group relative inline-block px-6 py-3 bg-yellow-400 text-black font-semibold tracking-wide uppercase rounded-lg overflow-hidden transition-all duration-500 ease-out
                   hover:bg-yellow-300 hover:shadow-[0_15px_35px_-8px_rgba(250,204,21,0.4)]
                   transform hover:scale-[1.02] hover:-translate-y-0.5 hover:rotate-[-0.3deg]
@@ -310,7 +313,7 @@ const HomePage: React.FC = () => {
                   <div className="absolute top-2/3 right-1/4 w-0.5 h-0.5 bg-yellow-700/60 rounded-full animate-pulse" style={{ animationDelay: '150ms' }}></div>
                   <div className="absolute bottom-1/4 left-1/2 w-0.5 h-0.5 bg-yellow-800/50 rounded-full animate-pulse" style={{ animationDelay: '300ms' }}></div>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </section>

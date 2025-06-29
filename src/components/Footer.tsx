@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer: React.FC = () => {
@@ -34,6 +35,14 @@ const Footer: React.FC = () => {
     },
   ];
 
+  // Fonction pour gérer le scroll vers des sections
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-black text-white py-8 sm:py-12 md:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
@@ -64,24 +73,30 @@ const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2">
               <li>
-                <a href="/" className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base">
+                <Link to="/" className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base">
                   Accueil
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="/catalog" className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base">
+                <Link to="/catalog" className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base">
                   {t('footer.services')}
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#about" className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base">
+                <button 
+                  onClick={() => scrollToSection('about')} 
+                  className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base bg-transparent border-none p-0 cursor-pointer"
+                >
                   À Propos
-                </a>
+                </button>
               </li>
               <li>
-                <a href="#contact" className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base">
+                <button 
+                  onClick={() => scrollToSection('contact')} 
+                  className="text-gray-300 hover:text-red-400 transition-colors duration-300 text-sm sm:text-base bg-transparent border-none p-0 cursor-pointer"
+                >
                   {t('footer.contact')}
-                </a>
+                </button>
               </li>
             </ul>
           </div>

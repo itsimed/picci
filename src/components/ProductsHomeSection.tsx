@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 
 interface ProductsHomeSectionProps {
@@ -96,8 +97,8 @@ const ProductsHomeSection: React.FC<ProductsHomeSectionProps> = ({ isLoaded }) =
 
         {/* Call to Action */}
         <div className="text-center">
-          <a 
-            href="/products"
+          <Link 
+            to="/products"
             className="group relative inline-block px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-red-600 to-red-700 text-white font-semibold rounded-lg overflow-hidden transition-all duration-500 ease-out
               hover:from-red-700 hover:to-red-800 hover:shadow-[0_20px_40px_-12px_rgba(220,38,38,0.4)]
               transform hover:scale-[1.02] hover:-translate-y-1 hover:rotate-[0.3deg]
@@ -119,7 +120,7 @@ const ProductsHomeSection: React.FC<ProductsHomeSectionProps> = ({ isLoaded }) =
               <div className="absolute bottom-1/4 left-1/2 w-0.5 h-0.5 bg-white/50 rounded-full animate-pulse" style={{ animationDelay: '400ms' }}></div>
               <div className="absolute top-1/2 right-1/5 w-0.5 h-0.5 bg-white/30 rounded-full animate-pulse" style={{ animationDelay: '600ms' }}></div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
