@@ -3,41 +3,127 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ===== FONTS CUSTOM ===== */
+/* Butler Font Declarations */
 @font-face {
-  font-family: 'GraffitiYouth';
-  src: url('/fonts/GraffitiYouth-Regular.otf') format('opentype'),
-       url('./fonts/GraffitiYouth-Regular.otf') format('opentype'),
-       url('../public/fonts/GraffitiYouth-Regular.otf') format('opentype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Ballsye';
-  src: url('/fonts/Ballsye.ttf') format('truetype'),
-       url('./fonts/Ballsye.ttf') format('truetype'),
-       url('../public/fonts/Ballsye.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* Classe pour utiliser la police Graffiti Youth */
-.font-grafity-youth {
-  font-family: 'GraffitiYouth', 'Marker Felt', 'Comic Sans MS', cursive, sans-serif;
-  letter-spacing: 0.02em;
-  text-rendering: optimizeLegibility;
+  font-family: 'Butler';
+  src: url('/fonts/Butler_Regular.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
-.font-ballsye {
-  font-family: 'Ballsye', 'Arial Black', Arial, sans-serif;
+@font-face {
+  font-family: 'Butler';
+  src: url('/fonts/Butler_Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Butler';
+  src: url('/fonts/Butler_Ultra_Light.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Butler';
+  src: url('/fonts/Butler_Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Butler';
+  src: url('/fonts/Butler_Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Butler';
+  src: url('/fonts/Butler_ExtraBold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Butler';
+  src: url('/fonts/Butler_Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Base styles */
+@layer base {
+  /* Style par défaut - Roboto */
+  body {
+    font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+  }
+
+  /* Grands titres - Butler */
+  h1, .text-5xl, .text-6xl, .text-7xl, .text-8xl {
+    font-family: 'Butler', serif !important;
+  }
+
+  /* Titres de sections - Butler */
+  h2, .text-4xl, .text-3xl {
+    font-family: 'Butler', serif !important;
+  }
+
+  /* Sous-titres et texte normal - Roboto */
+  h3, h4, h5, h6, p, span, div, button, input, textarea, select {
+    font-family: inherit;
+  }
+}
+
+/* Pour s'assurer que les icônes et les polices spéciales ne sont pas affectées */
+.material-icons,
+.fa,
+.fas,
+.far,
+.fab {
+  font-family: inherit;
+}
+
+/* Styles spécifiques pour certains éléments */
+body {
+  font-family: 'Butler', sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Butler', sans-serif;
+  font-weight: 700;
+}
+
+button, input, select, textarea {
+  font-family: 'Butler', sans-serif;
+}
+
+/* Base styles */
+@layer base {
+  html {
+    font-family: 'Butler', system-ui, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Butler', serif;
+  }
+}
+
+/* ===== FONTS SIMPLE ===== */
+.font-simple {
+  font-family: 'Roboto', Arial, sans-serif;
   letter-spacing: 0.01em;
   text-rendering: optimizeLegibility;
-  font-weight: 400;
+  font-weight: 700;
   font-style: normal;
 }
 
@@ -581,8 +667,6 @@ button:hover::before {
   transform: translateY(-2px);
 }
 
-
-
 .brick-pattern {
   background-color: #1a1a1a;
   background-image: 
@@ -651,17 +735,17 @@ button:hover::before {
 /* Slow pulse animation for gradient orbs */
 @keyframes pulse-slow {
   0%, 100% {
+    opacity: 0.2;
     transform: scale(1);
-    opacity: 0.4;
   }
   50% {
-    transform: scale(1.1);
-    opacity: 0.6;
+    opacity: 0.4;
+    transform: scale(1.05);
   }
 }
 
 .animate-pulse-slow {
-  animation: pulse-slow 6s ease-in-out infinite;
+  animation: pulse-slow 8s ease-in-out infinite;
 }
 
 /* Sliding lines animations */
@@ -945,6 +1029,147 @@ button:hover::before {
 
 .animate-button-press {
   animation: button-press 0.1s ease-out;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+
+.font-permanent-marker {
+  font-family: 'Permanent Marker', cursive;
+}
+
+/* Toutes les fonts sont maintenant remplacées par Roboto */
+
+@layer utilities {
+  .animate-float-slow {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-bounce-slow {
+    animation: bounce 3s ease-in-out infinite;
+  }
+
+  .animate-shine-glossy {
+    animation: shine 4s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(10px);
+    }
+  }
+
+  @keyframes shine {
+    0% {
+      transform: translateX(-100%) skewX(-15deg);
+    }
+    50%, 100% {
+      transform: translateX(200%) skewX(-15deg);
+    }
+  }
+}
+
+/* Animation de défilement */
+@keyframes scrollDown {
+  0% { transform: translateY(-100%); }
+  50% { transform: translateY(100%); }
+  50.1% { transform: translateY(-100%); }
+  100% { transform: translateY(-100%); }
+}
+
+.animate-scrollDown {
+  animation: scrollDown 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+/* Animation pour le pulse lent */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.4;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 8s ease-in-out infinite;
+}
+
+/* Animation pour le gradient qui bouge */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 400% 400%;
+  animation: gradient-x 15s ease infinite;
+}
+
+/* Animation float pour les particules */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-40px) translateX(-5px);
+    opacity: 1;
+  }
+  75% {
+    transform: translateY(-20px) translateX(-15px);
+    opacity: 0.8;
+  }
+}
+
+.animate-float {
+  animation: float 20s ease-in-out infinite;
+}
+
+/* Animations pour le hero de la page voitures */
+@keyframes fade-in-down {
+  0% { opacity: 0; transform: translateY(-40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.7s both;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out;
 }
 
 

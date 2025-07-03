@@ -11,11 +11,13 @@ interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const { currentLanguage, setCurrentLanguage, t } = useLanguage();
   const navigate = useNavigate();
   const location = useLocation();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+  const toggleServicesDropdown = () => setIsServicesDropdownOpen(!isServicesDropdownOpen);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,6 +28,19 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Ferme le dropdown lorsqu'on clique en dehors
+  useEffect(() => {
+    const closeDropdown = () => {
+      if (isServicesDropdownOpen) setIsServicesDropdownOpen(false);
+    };
+
+    document.body.addEventListener('click', closeDropdown);
+    
+    return () => {
+      document.body.removeEventListener('click', closeDropdown);
+    };
+  }, [isServicesDropdownOpen]);
 
   const toggleLanguage = () => {
     setCurrentLanguage(currentLanguage === 'fr' ? 'en' : 'fr');
@@ -65,7 +80,12 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
   // Fonction pour gérer les clics sur les liens
   const handleNavClick = (item: any, e: React.MouseEvent) => {
     e.preventDefault();
-    setIsMenuOpen(false); // Fermer le menu mobile
+    e.stopPropagation(); // Empêcher la propagation pour éviter de fermer le dropdown
+
+    // Ne fermer le menu mobile que si ce n'est pas le dropdown des services
+    if (item.type !== 'services-dropdown') {
+      setIsMenuOpen(false);
+    }
 
     switch (item.type) {
       case 'scroll-top':
@@ -77,7 +97,19 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
       case 'navigate':
         navigateToPage(item.href);
         break;
+      case 'services-dropdown':
+        toggleServicesDropdown();
+        break;
     }
+  };
+
+  // Services dropdown click handler
+  const handleServiceClick = (path: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsServicesDropdownOpen(false);
+    setIsMenuOpen(false);
+    navigateToPage(path);
   };
 
   const navItems = [
@@ -89,9 +121,14 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
     },
     { 
       label: t('nav.catalog'), 
-      type: 'navigate', 
-      href: '/catalog',
-      isActive: location.pathname === '/catalog'
+      type: 'services-dropdown',
+      isActive: ['/barbershop', '/carwash', '/cars', '/mechanic', '/financement'].includes(location.pathname)
+    },
+    {
+      label: 'TCT',
+      type: 'navigate',
+      href: '/tct',
+      isActive: location.pathname === '/tct'
     },
     { 
       label: t('nav.about'), 
@@ -104,6 +141,35 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
       type: 'scroll-section', 
       target: 'contact',
       isActive: false // TODO: Détecter si on est dans la section contact
+    },
+  ];
+
+  // Options du dropdown de services
+  const serviceOptions = [
+    {
+      label: t('nav.barbershop'),
+      path: '/barbershop',
+      isActive: location.pathname === '/barbershop'
+    },
+    {
+      label: t('nav.carwash'),
+      path: '/carwash',
+      isActive: location.pathname === '/carwash'
+    },
+    {
+      label: t('nav.cars'),
+      path: '/cars',
+      isActive: location.pathname === '/cars'
+    },
+    {
+      label: t('nav.mechanic'),
+      path: '/mechanic',
+      isActive: location.pathname === '/mechanic'
+    },
+    {
+      label: t('nav.financing'),
+      path: '/financement',
+      isActive: location.pathname === '/financement'
     },
   ];
 
@@ -132,7 +198,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
              isScrolled ? 'h-14 lg:h-16' : 'h-16 lg:h-18'
            }`}>
             
-                          {/* Logo Section - Enhanced */}
+            {/* Logo Section - Enhanced */}
             <div className="flex items-center space-x-4">
               <div className="relative">
                 <img 
@@ -153,61 +219,97 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
               </button>
             </div>
 
-                                      {/* Desktop Navigation and Language */}
-             <div className="hidden lg:flex items-center space-x-8">
-               {/* Navigation Links */}
-               {navItems.map((item, index) => (
-                 <button 
-                   key={item.label}
-                   onClick={(e) => handleNavClick(item, e)}
-                   className={`relative py-2 font-medium transition-all duration-700 ease-out group bg-transparent border-none outline-none ${
-                     isScrolled ? 'text-sm lg:text-base' : 'text-base lg:text-lg'
-                   } ${
-                     item.isActive 
-                       ? 'text-blue-400' 
-                       : 'text-gray-300 hover:text-blue-400'
-                   }`}
-                   style={{ background: 'none', border: 'none', boxShadow: 'none' }}
-                 >
-                   {/* Text */}
-                   <span className="tracking-wide relative z-10 transition-all duration-500 ease-out group-hover:scale-105 group-hover:drop-shadow-lg">
-                     {item.label}
-                   </span>
-                   
-                   {/* Animated underline from center */}
-                   <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-400 transition-all duration-500 ease-out shadow-lg shadow-blue-500/50 ${
-                     item.isActive ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'
-                   }`}></div>
+            {/* Desktop Navigation and Language */}
+            <div className="hidden lg:flex items-center space-x-8">
+              {/* Navigation Links */}
+              {navItems.map((item, index) => (
+                <div key={item.label} className="relative">
+                  <button 
+                    onClick={(e) => handleNavClick(item, e)}
+                    className={`relative py-2 font-medium transition-all duration-700 ease-out group bg-transparent border-none outline-none ${
+                      isScrolled ? 'text-sm lg:text-base' : 'text-base lg:text-lg'
+                    } ${
+                      item.isActive 
+                        ? 'text-red-500' 
+                        : 'text-gray-300 hover:text-red-500'
+                    }`}
+                    style={{ background: 'none', border: 'none', boxShadow: 'none' }}
+                  >
+                    {/* Text */}
+                    <span className="tracking-wide relative z-10 transition-all duration-500 ease-out group-hover:scale-105 group-hover:drop-shadow-lg">
+                      {item.label}
+                    </span>
+                    
+                    {/* Animated underline from center */}
+                    <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-0.5 bg-gradient-to-r from-red-500 via-red-600 to-yellow-400 transition-all duration-500 ease-out shadow-lg shadow-red-500/50 ${
+                      item.isActive ? 'w-full opacity-100' : 'w-0 opacity-0 group-hover:w-full group-hover:opacity-100'
+                    }`}></div>
 
-                 </button>
-               ))}
+                    {/* Dropdown arrow for services */}
+                    {item.type === 'services-dropdown' && (
+                      <span className="ml-1 inline-block transform transition-transform duration-300">
+                        <svg 
+                          className={`h-4 w-4 text-gray-300 group-hover:text-red-500 transition-transform duration-300 ${isServicesDropdownOpen ? 'rotate-180' : 'rotate-0'}`}
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </span>
+                    )}
+                  </button>
+
+                  {/* Services Dropdown */}
+                  {item.type === 'services-dropdown' && isServicesDropdownOpen && (
+                    <div 
+                      className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-gray-900/90 backdrop-blur-lg rounded-lg border border-gray-700 shadow-lg shadow-black/50 z-50"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {serviceOptions.map(service => (
+                        <button
+                          key={service.path}
+                          onClick={(e) => handleServiceClick(service.path, e)}
+                          className={`block w-full text-left px-4 py-3 text-sm transition-colors duration-300 ${
+                            service.isActive 
+                              ? 'text-red-500 bg-gray-800/50' 
+                              : 'text-gray-300 hover:bg-gray-800/70 hover:text-red-500'
+                          } first:rounded-t-lg last:rounded-b-lg border-b border-gray-700 last:border-0`}
+                        >
+                          {service.label}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
                
-               {/* Language Toggle - Bordered Style */}
-               <button
-                 onClick={toggleLanguage}
-                 className={`relative font-medium transition-all duration-700 ease-out group text-gray-300 hover:text-blue-400 bg-transparent border border-gray-600 hover:border-blue-400 rounded-lg outline-none ${
-                   isScrolled ? 'px-3 py-1 text-xs lg:text-sm' : 'px-4 py-2 text-sm lg:text-base'
-                 }`}
-               >
-                 <span className="tracking-wide relative z-10 transition-all duration-500 ease-out group-hover:scale-105 group-hover:drop-shadow-lg">
-                   {currentLanguage === 'fr' ? 'EN' : 'FR'}
-                 </span>
-               </button>
-             </div>
+              {/* Language Toggle - Bordered Style */}
+              <button
+                onClick={toggleLanguage}
+                className={`relative font-medium transition-all duration-700 ease-out group text-gray-300 hover:text-red-500 bg-transparent border border-gray-600 hover:border-red-500 rounded-lg outline-none ${
+                  isScrolled ? 'px-3 py-1 text-xs lg:text-sm' : 'px-4 py-2 text-sm lg:text-base'
+                }`}
+              >
+                <span className="tracking-wide relative z-10 transition-all duration-500 ease-out group-hover:scale-105 group-hover:drop-shadow-lg">
+                  {currentLanguage === 'fr' ? 'EN' : 'FR'}
+                </span>
+              </button>
+            </div>
 
             {/* Mobile Section - Enhanced */}
             <div className="lg:hidden flex items-center space-x-4">
               {/* Mobile Language Toggle */}
               <button
                 onClick={toggleLanguage}
-                className={`font-medium transition-all duration-700 ease-out text-gray-300 hover:text-blue-400 hover:scale-105 bg-transparent border border-gray-600 hover:border-blue-400 rounded-lg outline-none ${
+                className={`font-medium transition-all duration-700 ease-out text-gray-300 hover:text-red-500 hover:scale-105 bg-transparent border border-gray-600 hover:border-red-500 rounded-lg outline-none ${
                   isScrolled ? 'px-2 py-1 text-xs' : 'px-3 py-2 text-sm'
                 }`}
               >
                 {currentLanguage === 'fr' ? 'EN' : 'FR'}
               </button>
               
-                            {/* Hamburger Menu - Clean */}
+              {/* Hamburger Menu - Clean */}
               <button
                 onClick={toggleMenu}
                 className={`transition-all duration-700 ease-out group bg-transparent border-none outline-none hover:scale-110 ${
@@ -218,7 +320,7 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
                 aria-label={t('navbar.menuLabel')}
               >
                 <svg
-                  className={`text-gray-300 group-hover:text-blue-400 transition-all duration-700 ease-out group-hover:scale-110 group-hover:drop-shadow-lg ${
+                  className={`text-gray-300 group-hover:text-red-500 transition-all duration-700 ease-out group-hover:scale-110 group-hover:drop-shadow-lg ${
                     isScrolled ? 'h-5 w-5' : 'h-6 w-6'
                   }`}
                   stroke="currentColor"
@@ -248,49 +350,83 @@ const Navbar: React.FC<NavbarProps> = ({ logo, siteName, forceBlackBg }) => {
       </nav>
 
       {/* Mobile Menu - Enhanced */}
-      <div className={`fixed inset-0 z-40 lg:hidden transition-all duration-500 ${
-        isMenuOpen ? 'visible opacity-100' : 'invisible opacity-0'
-      }`}>
-        {/* Backdrop */}
-        <div 
-          className="absolute inset-0 bg-black/80 backdrop-blur-xl"
-          onClick={() => setIsMenuOpen(false)}
-        ></div>
-        
-        {/* Menu Panel */}
-                 <div className={`absolute top-0 right-0 h-full w-80 max-w-[90vw] bg-gradient-to-b from-gray-900/95 to-black/95 backdrop-blur-2xl shadow-2xl transform transition-transform duration-500 ${
+      <div
+        className={`fixed top-0 left-0 w-full h-full z-40 bg-black/90 backdrop-blur-lg transform transition-transform duration-500 ease-in-out ${
           isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}>
-          <div className="p-8 pt-28">
-            {/* Menu Items */}
-            <div className="space-y-3">
-              {navItems.map((item, index) => (
-                <button
-                  key={item.label}
-                  onClick={(e) => handleNavClick(item, e)}
-                  className={`w-full text-left px-6 py-4 rounded-xl font-medium text-lg transition-all duration-300 group relative overflow-hidden ${
-                    item.isActive
-                      ? 'text-white bg-gradient-to-r from-red-600 to-red-500 shadow-lg shadow-red-500/25'
-                      : 'text-gray-300 hover:text-white hover:bg-white/5'
-                  }`}
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-all duration-300 rounded-xl"></div>
-                  <span className="relative z-10 tracking-wide">{item.label}</span>
-                </button>
-              ))}
-            </div>
-            
-            {/* Decorative Elements */}
-                         <div className="mt-12 pt-8">
-              <div className="text-center">
-                <div className="inline-flex items-center space-x-2 text-gray-400 text-sm">
-                  <div className="w-8 h-px bg-gradient-to-r from-transparent to-red-500/50"></div>
-                  <span className="tracking-wider">BARBERSHOP</span>
-                  <div className="w-8 h-px bg-gradient-to-l from-transparent to-red-500/50"></div>
-                </div>
+        }`}
+      >
+        <div className="flex flex-col h-full overflow-y-auto">
+          <div className="flex justify-end p-6">
+            <button
+              onClick={toggleMenu}
+              className={`text-gray-300 hover:text-red-500 focus:outline-none`}
+              aria-label="Close menu"
+            >
+              <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            </button>
+          </div>
+          
+          <div className="flex-grow flex flex-col justify-center items-center space-y-8 px-6 pb-16">
+            {/* Main Nav Items */}
+            {navItems.map((item) => (
+              <div key={item.label} className="w-full">
+                {item.type === 'services-dropdown' ? (
+                  <div>
+                    <button
+                      onClick={(e) => handleNavClick(item, e)}
+                      className={`w-full text-center text-2xl font-semibold py-2 ${
+                        item.isActive ? 'text-red-500' : 'text-white hover:text-red-500'
+                      } transition-colors duration-300 flex items-center justify-center`}
+                    >
+                      {item.label}
+                      <svg 
+                        className={`h-5 w-5 ml-2 transition-transform duration-300 ${isServicesDropdownOpen ? 'rotate-180' : 'rotate-0'}`}
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </button>
+                    
+                    {/* Mobile Services Submenu */}
+                    {isServicesDropdownOpen && (
+                      <div className="mt-4 space-y-3 bg-gray-800/30 rounded-lg py-4">
+                        {serviceOptions.map(service => (
+                          <button
+                            key={service.path}
+                            onClick={(e) => handleServiceClick(service.path, e)}
+                            className={`w-full text-center text-xl py-2 ${
+                              service.isActive ? 'text-red-500' : 'text-gray-300 hover:text-red-500'
+                            } transition-colors duration-300`}
+                          >
+                            {service.label}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <button
+                    onClick={(e) => handleNavClick(item, e)}
+                    className={`w-full text-center text-2xl font-semibold py-2 ${
+                      item.isActive ? 'text-red-500' : 'text-white hover:text-red-500'
+                    } transition-colors duration-300`}
+                  >
+                    {item.label}
+                  </button>
+                )}
               </div>
-            </div>
+            ))}
+            
+            {/* Additional elements can go here */}
           </div>
         </div>
       </div>

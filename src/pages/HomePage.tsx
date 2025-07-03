@@ -2,25 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import CutCard from '../components/CutCard';
-import ProductsHomeSection from '../components/ProductsHomeSection';
+import ServicesSection from '../components/ServicesSection';
 import { assets } from '../config/assets';
 import { useLanguage } from '../contexts/LanguageContext';
-import { getPopularCuts } from '../data/cutsData';
-import { getMiniServices } from '../data/servicesData';
 
 const HomePage: React.FC = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
   const [isLoaded, setIsLoaded] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-
-  // Récupérer les données
-  const popularCuts = getPopularCuts(6);
 
   useEffect(() => {
     // Petit délai pour s'assurer que tout est monté
@@ -29,6 +24,15 @@ const HomePage: React.FC = () => {
     }, 100);
     
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -46,22 +50,16 @@ const HomePage: React.FC = () => {
     setFormData({ name: '', email: '', message: '' });
   };
 
-  const scrollToCatalog = () => {
-    const catalogSection = document.getElementById('catalog');
-    catalogSection?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleServiceSelect = (serviceId: string) => {
-    console.log('Service selected:', serviceId);
-    // Navigation vers la page catalogue avec l'ID du service
-    navigate(`/catalog?service=${serviceId}`);
+  const scrollToServices = () => {
+    const servicesSection = document.getElementById('services');
+    servicesSection?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Background animations globales - HARMONISÉES */}
+      {/* Background animations globales */}
       <div className="fixed inset-0 pointer-events-none z-0">
-        {/* Particules flottantes petites - 15 standardisées */}
+        {/* Particules flottantes petites */}
         {[...Array(15)].map((_, i) => (
           <div
             key={i}
@@ -75,7 +73,7 @@ const HomePage: React.FC = () => {
           />
         ))}
         
-        {/* Particules moyennes - 8 standardisées */}
+        {/* Particules moyennes */}
         {[...Array(8)].map((_, i) => (
           <div
             key={`mid-${i}`}
@@ -89,134 +87,72 @@ const HomePage: React.FC = () => {
           />
         ))}
         
-        {/* Orbes de gradient harmonisés */}
+        {/* Orbes de gradient */}
         <div className="absolute top-1/4 right-0 w-96 h-96 bg-blue-500/3 rounded-full blur-3xl animate-pulse-slow"></div>
         <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-cyan-500/2 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '8s' }}></div>
         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-sky-500/1 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '12s' }}></div>
       </div>
 
       <div className="relative z-10">
-        <Navbar logo={assets.logoNav} siteName={t('navbar.siteName')} />
+        <Navbar logo={assets.logoNav} siteName="Station Multi-Services" />
 
-        {/* 1. HERO SECTION - animations harmonisées */}
-        <section className="h-screen xl:h-[110vh] flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black">
-          {/* Background image principale */}
+        {/* HERO SECTION */}
+        <section 
+          className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black"
+          style={{ transform: `translateY(${-scrollY}px)` }}
+        >
+          {/* Background image */}
           <div className="absolute inset-0 z-0">
-            {/* Image desktop */}
-            <img 
-              src="/Picci_8.jpg"
-              alt="Lave-auto Ricci Carwash - Vue desktop"
-              className="hidden md:block w-full h-full object-cover opacity-30"
-            />
-            {/* Image mobile */}
-            <img 
-              src="/Picci_9.jpg"
-              alt="Lave-auto Ricci Carwash - Vue mobile"
-              className="block md:hidden w-full h-full object-cover opacity-30"
-              style={{ objectPosition: 'center 20%' }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/80 z-10"></div>
+            <div className="relative h-full w-full">
+              <img 
+                src="/Picci_14.jpg"
+                alt="Station Multi-Services - Vue principale"
+                className="w-full h-full object-cover opacity-40"
+              />
+              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90 z-10"></div>
+            </div>
           </div>
 
-          {/* Hero content - CONTENEUR RENFORCÉ */}
-          <div className="relative z-10 text-center px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 max-w-7xl xl:max-w-8xl mx-auto py-16 sm:py-20 md:py-24 lg:py-28 hero-container-weight">
-            <h1 className="font-ballsye text-6xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[8rem] font-bold text-white leading-tight mb-4 relative">
-              Clean. 
-              <span className="relative text-blue-400 inline-block overflow-visible">
-                <span className="relative z-10">Shine.</span>
-                {/* Reflet glossy fluide */}
-                <span className="absolute left-0 top-0 w-full h-full pointer-events-none z-20">
-                  <span className="block absolute left-[-60%] top-1/4 w-1/3 h-1/2 bg-gradient-to-r from-white/80 via-white/0 to-white/0 blur-[2px] opacity-70 animate-shine-glossy" style={{animationDelay:'0.7s'}}></span>
-                </span>
-              </span>
-              <span className="text-red-500 animate-glow-red drop-shadow-[0_0_16px_rgba(239,68,68,0.7)]">Drive.</span>
+          {/* Hero content */}
+          <div className="relative z-10 text-center px-6 sm:px-8 md:px-12 lg:px-16 max-w-7xl mx-auto">
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight mb-6">
+              <span className="text-white">{t('home.hero.title.line1')}</span>
+              <span className="block text-white">{t('home.hero.title.line2')}</span>
             </h1>
-            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mt-8 mb-10">
-              {t('hero.subtitle')}
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mt-6">
+              {t('home.hero.description')}
             </p>
-            {/* Bouton scroll vers services */}
             <button 
-              onClick={scrollToCatalog}
-              className="mt-6 px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-full text-lg shadow-lg hover:scale-105 hover:from-blue-700 hover:to-cyan-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
+              onClick={scrollToServices}
+              className="mt-8 px-8 py-4 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold rounded-lg shadow-lg 
+              hover:scale-105 hover:from-red-700 hover:to-red-600 
+              transition-all duration-300 
+              focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2 focus:ring-offset-black
+              relative group overflow-hidden"
             >
-              {t('hero.cta')}
+              <span className="relative z-10">{t('home.hero.cta')}</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-red-700/50 to-red-600/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </button>
-            {/* Animation scroll/flèche */}
-            <div className="flex flex-col items-center mt-8 animate-bounce-slow">
-              <span className="block w-8 h-8 border-b-4 border-r-4 border-blue-400 rounded-br-lg transform rotate-45 mb-1"></span>
-              <span className="block w-6 h-6 border-b-2 border-r-2 border-cyan-400 rounded-br-lg transform rotate-45"></span>
-            </div>
           </div>
 
-          {/* Dégradé premium et flou en bas du Hero */}
+          {/* Dégradé en bas du Hero */}
           <div className="absolute bottom-0 left-0 w-full h-40 pointer-events-none z-20">
-            {/* Dégradé fondu premium */}
             <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black via-black/80 to-transparent"></div>
-            {/* Flou progressif en bas */}
-            <div className="absolute bottom-0 left-0 w-full h-20 bg-black/0 backdrop-blur-md" style={{maskImage: 'linear-gradient(to top, black 60%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to top, black 60%, transparent 100%)'}}></div>
-          </div>
-        </section>
-
-        {/* 2. SECTION CATALOGUE DE SERVICES */}
-        <section id="catalog" className="py-16 sm:py-20 md:py-24 bg-black relative overflow-hidden">
-          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            {/* Section Header */}
-            <h2 className="text-3xl md:text-4xl font-bold text-white text-center mb-10">
-              {t('home.catalog.title', 'Nos Services de Lavage')}
-            </h2>
-
-            {/* Mini Services Grid - animations harmonisées */}
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16 mb-12">
-              {getMiniServices().map((category, categoryIndex) => {
-                const isPremium = category.title.toUpperCase().includes('PREMIUM');
-                return (
-                <div 
-                  key={category.title} 
-                  className={`space-y-8 transform transition-all duration-600 ${
-                    isLoaded 
-                      ? 'translate-y-0 opacity-100' 
-                      : 'translate-y-8 opacity-0'
-                  }`}
-                    style={{ transitionDelay: `${categoryIndex * 200}ms` }}
-                  >
-                    <div className="text-center">
-                      <h3 className="text-2xl font-bold text-white mb-2">{category.title}</h3>
-                      <div className={`w-12 h-1 mx-auto rounded-full ${isPremium ? 'bg-red-500' : 'bg-blue-500'}`}></div>
-                    </div>
-                  <div className="space-y-6">
-                    {category.services.map((service, serviceIndex) => (
-                        <div 
-                          key={service.name}
-                          className={`bg-gray-900 rounded-lg p-6 transform transition-all duration-300 hover:scale-105 cursor-pointer ${isPremium ? 'hover:shadow-red-500/10' : 'hover:shadow-blue-500/10'} hover:shadow-xl`}
-                          onClick={() => handleServiceSelect(service.name)}
-                        >
-                          <h4 className="text-xl font-semibold text-white mb-2">{t(service.nameKey)}</h4>
-                          <p className="text-gray-400 text-sm mb-4">{t(service.descriptionKey)}</p>
-                          <div className="flex justify-between items-center">
-                            <span className={`font-bold ${isPremium ? 'text-red-500' : 'text-blue-500'}`}>{service.price}</span>
-                            <button className={`text-sm text-white transition-colors duration-300 ${isPremium ? 'hover:text-red-500' : 'hover:text-blue-500'}`}>{t('common.learnMore')}</button>
-                          </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                );
-              })}
-            </div>
-
-            {/* Bouton Voir tous nos services */}
-            <div className="text-center mt-12">
-              <Link
-                to="/catalog"
-                className="inline-block px-8 py-4 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-full text-lg shadow-lg hover:scale-105 hover:from-blue-700 hover:to-cyan-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2"
-              >
-                {t('common.viewAll')}
-              </Link>
+            
+            {/* Indicateur de scroll en forme de souris */}
+            <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2">
+              <div className="w-5 h-8 border-2 border-red-400/50 rounded-full p-1">
+                <div className="w-1 h-2 bg-red-400/80 rounded-full mx-auto animate-bounce"></div>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* 4. SECTION À PROPOS - Ricci Carwash */}
+        {/* SECTION SERVICES - Affichage des 4 services disponibles */}
+        <ServicesSection />
+
+        {/* SECTION À PROPOS */}
         <section id="about" className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
           {/* Animations de bulles et éclaboussures */}
           <div className="absolute inset-0 pointer-events-none z-0">
@@ -241,226 +177,210 @@ const HomePage: React.FC = () => {
 
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Contenu texte Ricci Carwash */}
-              <div className="space-y-8">
-                <div>
+              {/* Contenu texte */}
+              <div className="space-y-6">
                   <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-                    {t('about.title')}
+                    {t('home.about.title')}
                   </h2>
-                  <p className="text-lg sm:text-xl text-cyan-200 leading-relaxed mb-6">
-                    {t('about.description')}
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  {t('home.about.description1')}
+                </p>
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  {t('home.about.description2')}
+                </p>
+                
+                {/* Motto en gras avec style moderne */}
+                <div className="relative my-8">
+                  <p className="text-2xl sm:text-3xl font-bold text-white text-center py-4 relative z-10">
+                    {t('home.about.motto')}
                   </p>
-                  <p className="text-lg text-cyan-100 leading-relaxed mb-8">
-                    {t('about.slogan')}
-                  </p>
-                </div>
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-400 mb-2">{t('about.stats.expertise.number')}</div>
-                    <div className="text-cyan-100">{t('about.stats.expertise.label')}</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-400 mb-2">{t('about.stats.vehicles.number')}</div>
-                    <div className="text-cyan-100">{t('about.stats.vehicles.label')}</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-blue-400 mb-2">{t('about.stats.satisfaction.number')}</div>
-                    <div className="text-cyan-100">{t('about.stats.satisfaction.label')}</div>
-                  </div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-500/10 to-transparent rounded-lg"></div>
                 </div>
               </div>
-
-              {/* Image Ricci Carwash - voiture/lavage auto */}
-              <div className="relative h-[420px] w-full overflow-hidden flex items-center justify-center">
-                <div className={`absolute inset-0 transform transition-all duration-1500 ease-out ${isLoaded ? 'scale-100 opacity-100' : 'scale-105 opacity-0'}`} style={{ transitionDelay: '300ms' }}>
-                  <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] group">
-                    {/* Image principale */}
-                    <img 
-                      src="/Picci_14.jpg" 
-                      alt="Enseigne Ricci Carwash" 
-                      className="w-full h-full object-cover transition-transform duration-[3000ms] ease-out group-hover:scale-105"
-                    />
-                    {/* Overlay bleu/cyan subtil */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 via-cyan-400/10 to-transparent pointer-events-none"></div>
-                    {/* Vignettage/flou sur les bords */}
-                    <div className="absolute inset-0 pointer-events-none" style={{boxShadow:'0 0 80px 40px rgba(0,0,0,0.25) inset'}}></div>
-                    {/* Reflet animé (shine) */}
-                    <div className="absolute left-[-30%] top-1/4 w-2/3 h-1/3 rotate-12 bg-gradient-to-r from-white/60 to-transparent rounded-full blur-2xl opacity-30 animate-shine-effect pointer-events-none" />
+              
+              {/* Statistiques */}
+              <div className="mt-6 lg:mt-0">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  {/* Satisfaction */}
+                  <div className="bg-gray-900/40 backdrop-blur-sm rounded-xl p-6 border border-gray-800/50 hover:border-cyan-500/40 transition-all duration-500 hover:bg-gray-800/50 group">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"></path>
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-white">{t('home.about.stats.satisfaction.title')}</h3>
+                    </div>
+                    <p className="text-gray-300">{t('home.about.stats.satisfaction.description')}</p>
+                  </div>
+                  
+                  {/* Expertise */}
+                  <div className="bg-gray-900/40 backdrop-blur-sm rounded-xl p-6 border border-gray-800/50 hover:border-cyan-500/40 transition-all duration-500 hover:bg-gray-800/50 group">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zm5 2a2 2 0 11-4 0 2 2 0 014 0zm-4 7a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zm10 10v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path>
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-white">{t('home.about.stats.expertise.title')}</h3>
+                    </div>
+                    <p className="text-gray-300">{t('home.about.stats.expertise.description')}</p>
+                  </div>
+                  
+                  {/* Innovation */}
+                  <div className="bg-gray-900/40 backdrop-blur-sm rounded-xl p-6 border border-gray-800/50 hover:border-cyan-500/40 transition-all duration-500 hover:bg-gray-800/50 group">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9a1 1 0 00-1-1z" clipRule="evenodd"></path>
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-white">{t('home.about.stats.innovation.title')}</h3>
+                    </div>
+                    <p className="text-gray-300">{t('home.about.stats.innovation.description')}</p>
+                  </div>
+                  
+                  {/* Service Client */}
+                  <div className="bg-gray-900/40 backdrop-blur-sm rounded-xl p-6 border border-gray-800/50 hover:border-cyan-500/40 transition-all duration-500 hover:bg-gray-800/50 group">
+                    <div className="flex items-center space-x-4 mb-4">
+                      <div className="w-12 h-12 bg-red-500/20 rounded-full flex items-center justify-center">
+                        <svg className="w-6 h-6 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M2 5a2 2 0 012-2h7a2 2 0 012 2v4a2 2 0 01-2 2H9l-3 3v-3H4a2 2 0 01-2-2V5z"></path>
+                          <path d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"></path>
+                        </svg>
+                      </div>
+                      <h3 className="text-xl font-bold text-white">{t('home.about.stats.service.title')}</h3>
+                    </div>
+                    <p className="text-gray-300">{t('home.about.stats.service.description')}</p>
                   </div>
                 </div>
-                {/* Bulles animées devant la voiture */}
-                {[...Array(6)].map((_, i) => (
-                <div 
-                    key={i}
-                    className="absolute rounded-full bg-cyan-300/30 animate-bubble"
-                  style={{ 
-                      left: `${30 + Math.random() * 40}%`,
-                      top: `${60 + Math.random() * 30}%`,
-                      width: `${16 + Math.random() * 24}px`,
-                      height: `${16 + Math.random() * 24}px`,
-                      animationDelay: `${i * 0.7 + Math.random()}s`,
-                      animationDuration: `${4 + Math.random() * 4}s`,
-                    filter: 'blur(0.5px)'
-                  }}
-                />
-                ))}
               </div>
             </div>
           </div>
         </section>
 
-        {/* 5. SECTION CONTACT - spacing et inputs harmonisés */}
-        <section id="contact" className="py-16 sm:py-20 md:py-24 bg-gradient-to-t from-black via-gray-900 to-black relative overflow-hidden">
-          {/* Background animations */}
-          <div className="absolute inset-0 pointer-events-none">
-            {[...Array(6)].map((_, i) => (
-              <div
-                key={i}
-                className="absolute w-0.5 h-0.5 bg-blue-500/20 rounded-full animate-float"
-                style={{
-                  left: `${Math.random() * 100}%`,
-                  top: `${Math.random() * 100}%`,
-                  animationDelay: `${Math.random() * 10}s`,
-                  animationDuration: `${8 + Math.random() * 6}s`
-                }}
-              />
-            ))}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-32 bg-blue-500/1 rounded-full blur-3xl animate-pulse-slow"></div>
-          </div>
-
+        {/* SECTION CONTACT */}
+        <section id="contact" className="py-16 sm:py-20 md:py-24 bg-black relative overflow-hidden">
           <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-            {/* Section Header */}
-            <div className="text-center mb-12 md:mb-16">
-              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
-                {t('home.contact.title')}
-              </h2>
-              <p className="text-lg sm:text-xl text-gray-300 max-w-3xl mx-auto">
-                {t('home.contact.description')}
+            <div className="text-center mb-12">
+              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">{t('home.contact.title')}</h2>
+              <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+                {t('home.contact.subtitle')}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-              {/* Formulaire - inputs harmonisés */}
-              <div className="bg-gray-900/50 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-gray-800">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              {/* Formulaire de contact */}
+              <div className="bg-gray-900/40 backdrop-blur-sm rounded-xl p-6 sm:p-8 border border-gray-800/50">
+                <h3 className="text-2xl font-bold text-white mb-6">{t('home.contact.form.title')}</h3>
                 <form onSubmit={handleFormSubmit} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
-                      {t('home.contact.form.name')}
-                    </label>
+                    <label htmlFor="name" className="block text-gray-300 mb-2">{t('home.contact.form.name.label')}</label>
                     <input
                       type="text"
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleFormChange}
+                      className="w-full bg-gray-800 text-white rounded-lg px-4 py-3 border border-gray-700 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/30"
+                      placeholder={t('home.contact.form.name.placeholder')}
                       required
-                      className="w-full px-4 py-3 bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-600"
-                      placeholder={t('home.contact.form.namePlaceholder')}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
-                      {t('home.contact.form.email')}
-                    </label>
+                    <label htmlFor="email" className="block text-gray-300 mb-2">{t('home.contact.form.email.label')}</label>
                     <input
                       type="email"
                       id="email"
                       name="email"
                       value={formData.email}
                       onChange={handleFormChange}
+                      className="w-full bg-gray-800 text-white rounded-lg px-4 py-3 border border-gray-700 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/30"
+                      placeholder={t('home.contact.form.email.placeholder')}
                       required
-                      className="w-full px-4 py-3 bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-600"
-                      placeholder={t('home.contact.form.emailPlaceholder')}
                     />
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
-                      {t('home.contact.form.message')}
-                    </label>
+                    <label htmlFor="message" className="block text-gray-300 mb-2">{t('home.contact.form.message.label')}</label>
                     <textarea
                       id="message"
                       name="message"
                       value={formData.message}
                       onChange={handleFormChange}
+                      className="w-full bg-gray-800 text-white rounded-lg px-4 py-3 border border-gray-700 focus:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500/30 h-32"
+                      placeholder={t('home.contact.form.message.placeholder')}
                       required
-                      rows={5}
-                      className="w-full px-4 py-3 bg-gray-800/80 backdrop-blur-sm border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 hover:border-gray-600 resize-none"
-                      placeholder={t('home.contact.form.messagePlaceholder')}
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="group relative w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold rounded-lg overflow-hidden transition-all duration-500 ease-out
-                      hover:from-blue-700 hover:to-cyan-600 hover:shadow-[0_20px_40px_-12px_rgba(0,255,255,0.15)]
-                      transform hover:scale-[1.01] hover:-translate-y-0.5 
-                      active:scale-[0.99] active:translate-y-0
-                      before:absolute before:inset-0 before:bg-gradient-to-r before:from-white/20 before:to-transparent before:translate-x-[-100%] before:transition-transform before:duration-700 before:ease-out hover:before:translate-x-[100%]
-                      after:absolute after:inset-0 after:bg-gradient-to-br after:from-blue-400/20 after:via-transparent after:to-cyan-900/20 after:opacity-0 after:transition-opacity after:duration-500 hover:after:opacity-100
-                      focus:ring-2 focus:ring-cyan-400/50 focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="w-full px-6 py-4 bg-gradient-to-r from-red-600 to-red-500 text-white font-bold rounded-lg shadow-lg hover:from-red-700 hover:to-red-600 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-400 focus:ring-offset-2"
                   >
-                    <span className="relative z-10 transition-all duration-300 group-hover:text-shadow-glow flex items-center justify-center gap-2">
-                      <span>{t('home.contact.form.submit')}</span>
-                      <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                      </svg>
-                    </span>
-                    {/* Send animation particles */}
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="absolute top-1/2 left-1/3 w-1 h-1 bg-white/60 rounded-full animate-pulse" style={{ animationDelay: '0ms' }}></div>
-                      <div className="absolute top-1/3 right-1/3 w-0.5 h-0.5 bg-white/40 rounded-full animate-pulse" style={{ animationDelay: '200ms' }}></div>
-                      <div className="absolute bottom-1/3 left-2/3 w-0.5 h-0.5 bg-white/50 rounded-full animate-pulse" style={{ animationDelay: '400ms' }}></div>
-                    </div>
+                    {t('home.contact.form.submit')}
                   </button>
                 </form>
               </div>
 
-              {/* Informations contact */}
+              {/* Informations de contact */}
               <div className="space-y-8">
-                <div className="bg-gray-900/30 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-gray-800/50">
+                <div className="bg-gray-900/40 backdrop-blur-sm rounded-xl p-6 border border-gray-800/50">
                   <h3 className="text-2xl font-bold text-white mb-6">{t('home.contact.info.title')}</h3>
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     <div className="flex items-start space-x-4">
-                      <div className="w-6 h-6 mt-1 text-cyan-400">📍</div>
+                      <div className="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>
+                        </svg>
+                      </div>
                       <div>
-                        <p className="text-white font-medium">{t('home.contact.info.address.label')}</p>
-                        <p className="text-gray-300">{t('home.contact.info.address.street')}<br />{t('home.contact.info.address.city')}</p>
+                        <h4 className="text-lg font-semibold text-white mb-1">{t('home.contact.info.address.title')}</h4>
+                        <p className="text-gray-300">{t('home.contact.info.address.line1')}</p>
+                        <p className="text-gray-300">{t('home.contact.info.address.line2')}</p>
+                        <a 
+                          href="https://www.google.com/maps/dir//11770+5e+Avenue+Montreal,+QC+H1E+2X4" 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-red-400 hover:text-red-300 inline-flex items-center mt-2 transition-colors duration-300"
+                        >
+                          <span>{t('home.contact.info.address.directions')}</span>
+                          <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
                       </div>
                     </div>
+                    
                     <div className="flex items-start space-x-4">
-                      <div className="w-6 h-6 mt-1 text-cyan-400">📞</div>
-                      <div>
-                        <p className="text-white font-medium">{t('home.contact.info.phone.label')}</p>
-                        <p className="text-gray-300">{t('home.contact.info.phone.number')}</p>
+                      <div className="w-10 h-10 bg-red-500/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                        <svg className="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                        </svg>
                       </div>
-                    </div>
-                    <div className="flex items-start space-x-4">
-                      <div className="w-6 h-6 mt-1 text-cyan-400">✉️</div>
                       <div>
-                        <p className="text-white font-medium">{t('home.contact.info.email.label')}</p>
-                        <p className="text-gray-300">{t('home.contact.info.email.address')}</p>
+                        <h4 className="text-lg font-semibold text-white mb-1">{t('home.contact.info.phone.title')}</h4>
+                        <a 
+                          href="tel:+15144943795" 
+                          className="text-gray-300 hover:text-red-400 transition-colors duration-300"
+                        >
+                          {t('home.contact.info.phone.number')}
+                        </a>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-gray-900/30 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-gray-800/50">
+                <div className="bg-gray-900/40 backdrop-blur-sm rounded-xl p-6 border border-gray-800/50">
                   <h3 className="text-2xl font-bold text-white mb-6">{t('home.contact.hours.title')}</h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between">
-                      <span className="text-gray-300">{t('home.contact.hours.weekdays')}</span>
-                      <span className="text-white font-medium">{t('home.contact.hours.weekdaysTime')}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-300">{t('home.contact.hours.saturday')}</span>
-                      <span className="text-white font-medium">{t('home.contact.hours.saturdayTime')}</span>
-                    </div>
-                    <div className="flex justify-between">
-                      <span className="text-gray-300">{t('home.contact.hours.sunday')}</span>
-                      <span className="text-white font-medium">{t('home.contact.hours.sundayTime')}</span>
-                    </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-gray-300">{t('home.contact.hours.everyday')}</span>
+                    <span className="text-white">{t('home.contact.hours.time')}</span>
+                  </div>
+                  <div className="mt-4 py-1 px-3 bg-green-500/20 rounded-full inline-flex items-center">
+                    <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse"></div>
+                    <span className="text-green-400 text-sm">{t('home.contact.hours.open')}</span>
                   </div>
                 </div>
               </div>

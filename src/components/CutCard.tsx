@@ -64,7 +64,7 @@ const CutCard: React.FC<CutCardProps> = ({ cut, onSelect }) => {
 
         <div className="absolute top-3 right-3">
           <span className="bg-red-600/90 backdrop-blur-sm text-white text-xs px-2 py-1 rounded-full font-semibold">
-            {cut.category}
+            {t('cutCard.category.' + cut.category, cut.category)}
           </span>
         </div>
 
@@ -75,10 +75,10 @@ const CutCard: React.FC<CutCardProps> = ({ cut, onSelect }) => {
       
       <div className="p-4 sm:p-6">
         <h3 className="text-lg sm:text-xl font-bold text-white mb-2 group-hover:text-red-400 transition-colors duration-300">
-          {cut.name}
+          {t(cut.nameKey, cut.name)}
         </h3>
         <p className="text-gray-300 text-sm leading-relaxed mb-4 line-clamp-2">
-          {cut.description}
+          {t(cut.descriptionKey, cut.description)}
         </p>
         
         <div className="flex justify-between items-center">

@@ -1,16 +1,66 @@
-# Barbershop Website
+# Station Multi-Services Website
 
-Un site web moderne et professionnel pour services de coiffure masculine, développé avec React, TypeScript et Tailwind CSS.
+Ce projet est un site web unifié pour une station de services qui propose quatre services distincts :
 
-## 🚀 Fonctionnalités
+## 🌟 Services intégrés
 
-- **Design moderne** : Interface élégante avec thème noir et rouge
-- **Animations fluides** : Effets visuels et transitions professionnelles
-- **Multilingue** : Support français/anglais
-- **Responsive** : Adapté à tous les appareils
-- **Services** : Catalogue complet des coupes et services
-- **Produits** : Boutique de produits de soins
-- **Contact** : Formulaire de contact intégré
+### 💈 Barbershop
+Service de coiffure et barbier professionnel avec des coiffeurs expérimentés.
+- Page dédiée : `/barbershop`
+
+### 🚗 Lavage auto (Carwash)
+Services de lavage et detailing automobile premium.
+- Page dédiée : `/carwash`
+
+### 🛻 Vente de voitures d'occasion
+Sélection de véhicules d'occasion vérifiés et garantis.
+- Page dédiée : `/cars`
+
+### 🔧 Mécanique auto (En développement)
+Services de réparation et d'entretien automobile à venir.
+- Page dédiée : `/mechanic`
+
+## 🧩 Structure du projet
+
+Le site est construit avec React, TypeScript et Tailwind CSS. La structure des dossiers est organisée pour faciliter l'intégration de multiples services :
+
+- `/components` : Composants partagés et spécifiques aux services
+  - `ServicesSection.tsx` : Section affichant les quatre services
+  - Autres composants spécifiques à chaque service
+
+- `/pages` : Pages principales du site
+  - `HomePage.tsx` : Page d'accueil présentant tous les services
+  - `BarbershopPage.tsx` : Page dédiée au service de barbier
+  - `CarwashPage.tsx` : Page dédiée au service de lavage auto
+  - `CarsPage.tsx` : Page dédiée à la vente de voitures
+  - `MechanicPage.tsx` : Page "Coming soon" pour le service de mécanique
+
+## 🎨 Caractéristiques de design
+
+- Thème sombre avec accents de couleur noir/rouge/bleu
+- Animations fluides et effets visuels modernes
+- Design responsive et mobile-friendly
+- Interface unifiée pour tous les services
+
+## 🚀 Pour démarrer
+
+```bash
+# Installation des dépendances
+npm install
+
+# Lancement du serveur de développement
+npm run dev
+
+# Construction pour la production
+npm run build
+```
+
+## 📱 Fonctionnalités
+
+- Navigation intuitive avec menu dropdown pour les services
+- Pages de service dédiées avec contenu spécifique
+- Animations de transition entre les pages
+- Support multilingue (FR/EN)
 
 ## 🛠️ Technologies
 

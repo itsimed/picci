@@ -35,7 +35,7 @@ const ServicesCatalog: React.FC = () => {
               >
                 {/* Category Title */}
                 <h2 className={`text-2xl sm:text-3xl font-bold tracking-widest uppercase text-center border-b-2 pb-4 mb-8 ${isPremium ? 'border-red-500' : 'border-blue-400'}`}>
-                  {category.title}
+                  {t(category.titleKey, category.title)}
                 </h2>
 
                 {/* Services List */}
