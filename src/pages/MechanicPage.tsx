@@ -3,244 +3,11 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { assets } from '../config/assets';
 import { useLanguage } from '../contexts/LanguageContext';
+import { mechanicServicesData, mechanicServiceCategories } from '../data/mechanicServicesData';
 import '../styles/catalog.css';
 
-// Données des services mécaniques avec prix estimatifs pour le marché canadien
-const mechanicServices = {
-  "Entretien Régulier": [
-  {
-    id: 1,
-    name: "Changement d'huile",
-      description: "Vidange d'huile avec filtre premium et inspection des niveaux.",
-      price: "À partir de 69.99$",
-      estimatedTime: "30-45 minutes"
-  },
-  {
-    id: 2,
-      name: "Mise au point complète",
-      description: "Remplacement des bougies, filtres, et ajustement des systèmes.",
-      price: "À partir de 249.99$",
-      estimatedTime: "2-3 heures"
-  },
-  {
-    id: 3,
-      name: "Inspection multipoint",
-      description: "Inspection complète de 50 points incluant tous les systèmes.",
-      price: "À partir de 89.99$",
-      estimatedTime: "1 heure"
-    }
-  ],
-  "Système de Freinage": [
-  {
-    id: 4,
-      name: "Plaquettes avant",
-      description: "Remplacement des plaquettes et inspection du système.",
-      price: "À partir de 149.99$",
-      estimatedTime: "1-2 heures"
-  },
-  {
-    id: 5,
-      name: "Disques et plaquettes",
-      description: "Remplacement complet des disques et plaquettes.",
-      price: "À partir de 299.99$",
-      estimatedTime: "2-3 heures"
-  },
-  {
-    id: 6,
-      name: "Purge des freins",
-      description: "Remplacement du liquide et purge du système.",
-      price: "À partir de 89.99$",
-      estimatedTime: "1 heure"
-    }
-  ],
-  "Pneus et Roues": [
-  {
-    id: 7,
-      name: "Changement saisonnier",
-      description: "Montage, équilibrage et installation des pneus.",
-      price: "À partir de 79.99$",
-      estimatedTime: "1 heure"
-  },
-  {
-    id: 8,
-      name: "Alignement 4 roues",
-      description: "Alignement complet avec technologie 3D.",
-      price: "À partir de 119.99$",
-      estimatedTime: "1-1.5 heures"
-  },
-  {
-    id: 9,
-      name: "Réparation crevaison",
-      description: "Réparation ou remplacement du pneu endommagé.",
-      price: "À partir de 39.99$",
-      estimatedTime: "30-45 minutes"
-    }
-  ],
-  "Suspension et Direction": [
-  {
-    id: 10,
-      name: "Amortisseurs avant",
-      description: "Remplacement des amortisseurs et inspection.",
-      price: "À partir de 399.99$",
-      estimatedTime: "2-3 heures"
-  },
-  {
-    id: 11,
-      name: "Rotules de suspension",
-      description: "Remplacement des rotules et alignement.",
-    price: "À partir de 249.99$",
-      estimatedTime: "2-3 heures"
-  },
-  {
-    id: 12,
-      name: "Direction assistée",
-      description: "Service complet du système de direction.",
-      price: "À partir de 129.99$",
-      estimatedTime: "1-2 heures"
-    }
-  ],
-  "Système Électrique": [
-    {
-      id: 13,
-      name: "Diagnostic électronique",
-      description: "Analyse complète des systèmes avec équipement pro.",
-      price: "À partir de 89.99$",
-      estimatedTime: "1 heure"
-    },
-    {
-      id: 14,
-      name: "Batterie",
-      description: "Test et remplacement si nécessaire.",
-      price: "À partir de 149.99$",
-      estimatedTime: "30 minutes"
-    },
-    {
-      id: 15,
-      name: "Alternateur",
-      description: "Diagnostic et remplacement.",
-    price: "À partir de 329.99$",
-      estimatedTime: "2-3 heures"
-    }
-  ],
-  "Climatisation": [
-    {
-      id: 16,
-      name: "Recharge A/C",
-      description: "Test d'étanchéité et recharge du système.",
-      price: "À partir de 129.99$",
-      estimatedTime: "1 heure"
-    },
-    {
-      id: 17,
-      name: "Service complet A/C",
-      description: "Diagnostic, recharge et désinfection.",
-      price: "À partir de 189.99$",
-      estimatedTime: "1.5-2 heures"
-    },
-    {
-      id: 18,
-      name: "Filtre habitacle",
-      description: "Remplacement du filtre à air de l'habitacle.",
-      price: "À partir de 49.99$",
-      estimatedTime: "30 minutes"
-    }
-  ],
-  "Transmission": [
-    {
-      id: 19,
-      name: "Vidange transmission",
-      description: "Vidange complète avec fluide synthétique.",
-      price: "À partir de 199.99$",
-      estimatedTime: "1.5-2 heures"
-    },
-    {
-      id: 20,
-      name: "Embrayage",
-      description: "Remplacement complet de l'embrayage.",
-      price: "À partir de 899.99$",
-      estimatedTime: "4-6 heures"
-    },
-    {
-      id: 21,
-      name: "Service 4x4",
-      description: "Entretien des différentiels et transfert.",
-      price: "À partir de 299.99$",
-      estimatedTime: "2-3 heures"
-    }
-  ],
-  "Moteur": [
-    {
-      id: 22,
-      name: "Courroie distribution",
-      description: "Remplacement courroie et composants.",
-      price: "À partir de 699.99$",
-      estimatedTime: "4-6 heures"
-    },
-    {
-      id: 23,
-      name: "Joints d'étanchéité",
-      description: "Remplacement des joints qui fuient.",
-      price: "À partir de 299.99$",
-      estimatedTime: "Varie selon localisation"
-    },
-    {
-      id: 24,
-      name: "Nettoyage injection",
-      description: "Nettoyage du système d'injection.",
-      price: "À partir de 149.99$",
-      estimatedTime: "1-2 heures"
-  }
-  ],
-  "Services d'Urgence": [
-    {
-      id: 25,
-      name: "Dépannage routier",
-      description: "Assistance routière avec diagnostic mobile.",
-      price: "À partir de 89.99$",
-      estimatedTime: "Variable"
-    },
-    {
-      id: 26,
-      name: "Démarrage d'urgence",
-      description: "Boost de batterie et diagnostic.",
-      price: "À partir de 49.99$",
-      estimatedTime: "30 minutes"
-    },
-    {
-      id: 27,
-      name: "Remorquage",
-      description: "Service de remorquage professionnel.",
-      price: "À partir de 99.99$",
-      estimatedTime: "Variable"
-    }
-  ],
-  "Services Premium": [
-    {
-      id: 28,
-      name: "Diagnostic avancé",
-      description: "Analyse approfondie multi-systèmes.",
-      price: "À partir de 159.99$",
-      estimatedTime: "1.5-2 heures"
-    },
-    {
-      id: 29,
-      name: "Protection céramique",
-      description: "Application de protection moteur céramique.",
-      price: "À partir de 299.99$",
-      estimatedTime: "2-3 heures"
-    },
-    {
-      id: 30,
-      name: "Programme VIP",
-      description: "Service prioritaire et tarifs préférentiels.",
-      price: "À partir de 399.99$/an",
-      estimatedTime: "Variable"
-    }
-  ]
-};
-
 // Catégories de services
-const serviceCategories = Object.keys(mechanicServices);
+const serviceCategories = mechanicServiceCategories;
 
 const MechanicPage: React.FC = () => {
   const { t } = useLanguage();
@@ -248,7 +15,29 @@ const MechanicPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [scrollY, setScrollY] = useState(0);
 
+  // Préchargement des images avec gestion d'erreurs
   useEffect(() => {
+    const preloadImages = () => {
+      const imageNumbers = Array.from({ length: 30 }, (_, i) => i + 1);
+      let loadedCount = 0;
+      let errorCount = 0;
+      
+      imageNumbers.forEach(num => {
+        const img = new Image();
+        img.onload = () => {
+          loadedCount++;
+          console.log(`✅ Preloaded: /mecano/${num}.jpg (${loadedCount}/30)`);
+        };
+        img.onerror = () => {
+          errorCount++;
+          console.log(`❌ Failed to preload: /mecano/${num}.jpg (${errorCount} errors)`);
+        };
+        img.src = `/mecano/${num}.jpg`;
+      });
+    };
+    
+    preloadImages();
+    
     const timer = setTimeout(() => {
       setIsLoaded(true);
     }, 300);
@@ -268,9 +57,9 @@ const MechanicPage: React.FC = () => {
   // Fonction pour obtenir les services filtrés
   const getFilteredServices = () => {
     if (activeCategory === 'all') {
-      return Object.values(mechanicServices).flat();
+      return Object.values(mechanicServicesData).flat();
     }
-    return mechanicServices[activeCategory] || [];
+    return mechanicServicesData[activeCategory] || [];
   };
 
   return (
@@ -319,15 +108,34 @@ const MechanicPage: React.FC = () => {
           className="min-h-screen flex items-center justify-center relative overflow-hidden bg-gradient-to-b from-black via-gray-900 to-black"
           style={{ transform: `translateY(${-scrollY}px)` }}
         >
-          {/* Background image */}
+          {/* Background images */}
           <div className="absolute inset-0 z-0">
-            <div className="relative h-full w-full">
-            <img 
-              src="/Picci_10.jpg" 
-              alt="Picci Mécanique - Services mécaniques professionnels"
-              className="w-full h-full object-cover opacity-40"
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90 z-10"></div>
+            <div className="relative h-full w-full flex">
+              {/* Photo 1 - 3.jpg */}
+              <div className="flex-1 relative">
+                <img 
+                  src="/mecano/3.jpg" 
+                  alt="Picci Mécanique - Services mécaniques professionnels"
+                  className="w-full h-full object-cover opacity-40"
+                />
+              </div>
+              {/* Photo 2 - 29.jpg */}
+              <div className="flex-1 relative">
+                <img 
+                  src="/mecano/29.jpg" 
+                  alt="Picci Mécanique - Services mécaniques professionnels"
+                  className="w-full h-full object-cover opacity-40"
+                />
+              </div>
+              {/* Photo 3 - 15.jpg */}
+              <div className="flex-1 relative">
+                <img 
+                  src="/mecano/15.jpg" 
+                  alt="Picci Mécanique - Services mécaniques professionnels"
+                  className="w-full h-full object-cover opacity-40"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-black/90 z-10"></div>
             </div>
           </div>
 
@@ -420,20 +228,20 @@ const MechanicPage: React.FC = () => {
                     >
                     <div className="mb-4">
                       <div className="flex items-center justify-between">
-                        <h4 className="text-xl font-bold text-white catalog-item-name">{t(`mechanic.service.${service.name}`)}</h4>
+                        <h4 className="text-xl font-bold text-white catalog-item-name">{t(service.nameKey)}</h4>
                         {activeCategory === 'all' && (
                           <span className="inline-block px-3 py-1 bg-yellow-500/20 rounded-full text-xs font-medium text-yellow-400 catalog-item-name">
-                            {t(`mechanic.categories.${Object.keys(mechanicServices).find(key => mechanicServices[key].some(s => s.id === service.id))}`)}
+                            {t(`mechanic.categories.${Object.keys(mechanicServicesData).find(key => mechanicServicesData[key].some(s => s.id === service.id))}`)}
                           </span>
                         )}
                       </div>
                     </div>
-                    <p className="text-gray-400 text-sm leading-relaxed mb-4 catalog-item-description">{service.description}</p>
+                    <p className="text-gray-400 text-sm leading-relaxed mb-4 catalog-item-description">{t(service.descriptionKey)}</p>
                     <div className="flex items-center text-sm text-gray-500 catalog-item-description">
                       <svg className="w-4 h-4 mr-2 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
-                      {service.estimatedTime}
+                      {t(service.timeKey)}
                     </div>
                   </div>
                   ))}
@@ -445,6 +253,157 @@ const MechanicPage: React.FC = () => {
               * Les prix indiqués sont estimatifs et peuvent varier selon le modèle et l'année du véhicule. 
               <br />Contactez-nous pour un devis précis adapté à votre véhicule.
             </div> */}
+          </div>
+        </section>
+        
+        {/* SECTION EXPERTS EN ACTION */}
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-black via-gray-900 to-black relative overflow-hidden">
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+            {/* Titre et description */}
+            <div className="text-center mb-16">
+              <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">{t('mechanic.experts.title')}</h2>
+              <p className="text-lg text-gray-300 max-w-3xl mx-auto">
+                {t('mechanic.experts.description')}
+              </p>
+            </div>
+            
+            {/* Grid de photos avec animations */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto h-[80vh] overflow-hidden">
+              {/* Colonne gauche - Photos verticales */}
+              <div className="flex flex-col gap-4 animate-scroll-down">
+                {[
+                  // Répétition 1
+                  '1.jpg', '3.jpg', '5.jpg', '7.jpg', '9.jpg', 
+                  '11.jpg', '13.jpg', '15.jpg', '17.jpg', '19.jpg',
+                  '21.jpg', '23.jpg', '25.jpg', '27.jpg', '29.jpg',
+                  // Répétition 2
+                  '1.jpg', '3.jpg', '5.jpg', '7.jpg', '9.jpg', 
+                  '11.jpg', '13.jpg', '15.jpg', '17.jpg', '19.jpg',
+                  '21.jpg', '23.jpg', '25.jpg', '27.jpg', '29.jpg',
+                  // Répétition 3
+                  '1.jpg', '3.jpg', '5.jpg', '7.jpg', '9.jpg', 
+                  '11.jpg', '13.jpg', '15.jpg', '17.jpg', '19.jpg',
+                  '21.jpg', '23.jpg', '25.jpg', '27.jpg', '29.jpg',
+                  // Répétition 4
+                  '1.jpg', '3.jpg', '5.jpg', '7.jpg', '9.jpg', 
+                  '11.jpg', '13.jpg', '15.jpg', '17.jpg', '19.jpg',
+                  '21.jpg', '23.jpg', '25.jpg', '27.jpg', '29.jpg'
+                ].map((photo, index) => (
+                  <div
+                    key={`left-${index}`}
+                    className="relative rounded-lg overflow-hidden shadow-xl group flex-shrink-0 bg-gray-800"
+                    style={{ minHeight: '250px' }}
+                  >
+                    <img
+                      src={`/mecano/${photo}`}
+                      alt={`Mécanicien au travail`}
+                      className="w-full h-full object-cover will-change-transform transition-transform duration-300 group-hover:scale-105"
+                      loading="eager"
+                      decoding="async"
+                      onError={(e) => {
+                        console.log(`❌ Error loading image: /mecano/${photo}`);
+                        // Garder le container mais masquer l'image
+                        e.currentTarget.style.visibility = 'hidden';
+                      }}
+                      onLoad={(e) => {
+                        console.log(`✅ Successfully loaded: /mecano/${photo}`);
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Colonne centrale - Photos horizontales */}
+              <div className="flex flex-col gap-4 animate-scroll-down-delayed">
+                {[
+                  // Répétition 1
+                  '2.jpg', '4.jpg', '6.jpg', '8.jpg', '10.jpg', 
+                  '12.jpg', '14.jpg', '16.jpg', '18.jpg', '20.jpg',
+                  '22.jpg', '24.jpg', '26.jpg', '28.jpg', '30.jpg',
+                  // Répétition 2
+                  '2.jpg', '4.jpg', '6.jpg', '8.jpg', '10.jpg', 
+                  '12.jpg', '14.jpg', '16.jpg', '18.jpg', '20.jpg',
+                  '22.jpg', '24.jpg', '26.jpg', '28.jpg', '30.jpg',
+                  // Répétition 3
+                  '2.jpg', '4.jpg', '6.jpg', '8.jpg', '10.jpg', 
+                  '12.jpg', '14.jpg', '16.jpg', '18.jpg', '20.jpg',
+                  '22.jpg', '24.jpg', '26.jpg', '28.jpg', '30.jpg',
+                  // Répétition 4
+                  '2.jpg', '4.jpg', '6.jpg', '8.jpg', '10.jpg', 
+                  '12.jpg', '14.jpg', '16.jpg', '18.jpg', '20.jpg',
+                  '22.jpg', '24.jpg', '26.jpg', '28.jpg', '30.jpg'
+                ].map((photo, index) => (
+                  <div
+                    key={`center-${index}`}
+                    className="relative rounded-lg overflow-hidden shadow-xl group flex-shrink-0 bg-gray-800"
+                    style={{ minHeight: '200px' }}
+                  >
+                    <img
+                      src={`/mecano/${photo}`}
+                      alt={`Mécanicien au travail`}
+                      className="w-full h-full object-cover will-change-transform transition-transform duration-300 group-hover:scale-105"
+                      loading="eager"
+                      decoding="async"
+                      onError={(e) => {
+                        console.log(`❌ Error loading image: /mecano/${photo}`);
+                        // Garder le container mais masquer l'image
+                        e.currentTarget.style.visibility = 'hidden';
+                      }}
+                      onLoad={(e) => {
+                        console.log(`✅ Successfully loaded: /mecano/${photo}`);
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Colonne droite - Photos verticales */}
+              <div className="flex flex-col gap-4 animate-scroll-down-slow">
+                {[
+                  // Répétition 1
+                  '30.jpg', '29.jpg', '28.jpg', '27.jpg', '26.jpg', 
+                  '25.jpg', '24.jpg', '23.jpg', '22.jpg', '21.jpg',
+                  '20.jpg', '19.jpg', '18.jpg', '17.jpg', '16.jpg',
+                  // Répétition 2
+                  '30.jpg', '29.jpg', '28.jpg', '27.jpg', '26.jpg', 
+                  '25.jpg', '24.jpg', '23.jpg', '22.jpg', '21.jpg',
+                  '20.jpg', '19.jpg', '18.jpg', '17.jpg', '16.jpg',
+                  // Répétition 3
+                  '30.jpg', '29.jpg', '28.jpg', '27.jpg', '26.jpg', 
+                  '25.jpg', '24.jpg', '23.jpg', '22.jpg', '21.jpg',
+                  '20.jpg', '19.jpg', '18.jpg', '17.jpg', '16.jpg',
+                  // Répétition 4
+                  '30.jpg', '29.jpg', '28.jpg', '27.jpg', '26.jpg', 
+                  '25.jpg', '24.jpg', '23.jpg', '22.jpg', '21.jpg',
+                  '20.jpg', '19.jpg', '18.jpg', '17.jpg', '16.jpg'
+                ].map((photo, index) => (
+                  <div
+                    key={`right-${index}`}
+                    className="relative rounded-lg overflow-hidden shadow-xl group flex-shrink-0 bg-gray-800"
+                    style={{ minHeight: '250px' }}
+                  >
+                    <img
+                      src={`/mecano/${photo}`}
+                      alt={`Mécanicien au travail`}
+                      className="w-full h-full object-cover will-change-transform transition-transform duration-300 group-hover:scale-105"
+                      loading="eager"
+                      decoding="async"
+                      onError={(e) => {
+                        console.log(`❌ Error loading image: /mecano/${photo}`);
+                        // Garder le container mais masquer l'image
+                        e.currentTarget.style.visibility = 'hidden';
+                      }}
+                      onLoad={(e) => {
+                        console.log(`✅ Successfully loaded: /mecano/${photo}`);
+                      }}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
         
